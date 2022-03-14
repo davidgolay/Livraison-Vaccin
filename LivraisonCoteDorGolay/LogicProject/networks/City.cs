@@ -10,28 +10,28 @@ namespace LivraisonCoteDor.network
     public class City
     {
         #region Attributes
-        private int _id;
-        private string _name;
-        private double _lt;
-        private double _lg;
+        private int id;
+        private string name;
+        private double latitude;
+        private double longitude;
         #endregion
 
         #region Properties
-        public int Id { get => this._id; }
+        public int Id { get => this.id; }
 
-        public string Name { get => this._name; }
+        public string Name { get => this.name; }
 
-        public double Longitude { get => this._lg; }
+        public double Longitude { get => this.longitude; }
 
-        public double Latitude { get => this._lt; }
+        public double Latitude { get => this.latitude; }
         #endregion
 
-        public City(int id, String name, double lt, double lg)
+        public City(int id, String name, double latitude, double longitude)
         {
-            this._id = id;
-            this._name = name;
-            this._lt = lt;
-            this._lg = lg;
+            this.id = id;
+            this.name = name;
+            this.latitude = latitude;
+            this.longitude = longitude;
         }
 
         public double getDistanceWith(City otherCity)
@@ -50,6 +50,12 @@ namespace LivraisonCoteDor.network
             double x2 = otherCity.Longitude;
             double y2 = otherCity.Latitude;
             return MyMath.GetDistanceBetweenDegreesCoordinates(x1, y1, x2, y2);
+        }
+
+        public override string ToString()
+        {
+            string res = "ID: " + this.id + " NAME: " + this.name;
+            return res;
         }
 
     }

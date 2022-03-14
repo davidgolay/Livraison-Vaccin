@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="extractors\CityExtractorTxt.cs" />
     <Compile Include="networks\City.cs" />
+    <Compile Include="networks\Tour.cs" />
+    <Compile Include="networks\TourCrescent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\MyMath.cs" />
   </ItemGroup>

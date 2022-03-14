@@ -1,5 +1,6 @@
 ﻿using LivraisonCoteDor.network;
 using Logic.generators;
+using LogicProject.networks;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,9 @@ namespace LivraisonCoteDorGolay
             {
                 List<string> lines = File.ReadLines(openFileDialog.FileName).ToList();
                 CityExtractorTxt extractor = new CityExtractorTxt();
-                extractor.ExtractCitiesFromLines(lines);
+                List<City> extractedCities = extractor.ExtractCitiesFromLines(lines);
+                Tour tour = new TourCrescent(extractedCities);
+                Console.WriteLine(tour.getTourString());
 
                 filePreview.Text = File.ReadAllText(openFileDialog.FileName);
             }
