@@ -11,8 +11,8 @@ namespace LivraisonCoteDor.network
         #region Attributes
         private int _id;
         private string _name;
-        private float _lt;
-        private float _lg;
+        private double _lt;
+        private double _lg;
         #endregion
 
         #region Properties
@@ -20,18 +20,20 @@ namespace LivraisonCoteDor.network
 
         public string Name { get => this._name; }
 
-        public float Longitude { get => this._lg; }
+        public double Longitude { get => this._lg; }
 
-        public float Latitude { get => this._lt; }
+        public double Latitude { get => this._lt; }
         #endregion
 
-        public City(int id, String name, float lt, float lg)
+        public City(int id, String name, double lt, double lg)
         {
             this._id = id;
             this._name = name;
             this._lt = lt;
             this._lg = lg;
         }
+
+
 
     }
 

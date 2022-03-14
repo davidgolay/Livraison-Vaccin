@@ -1,4 +1,6 @@
-﻿using Microsoft.Win32;
+﻿using LivraisonCoteDor.network;
+using Logic.generators;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,16 +24,30 @@ namespace LivraisonCoteDorGolay
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<City> _cities = new List<City>();
+
         public MainWindow()
         {
             InitializeComponent();
+            InitFields();
         }
 
         private void OnAddFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
+            {
                 filePreview.Text = File.ReadAllText(openFileDialog.FileName);
+                List<string> lines = File.ReadLines(openFileDialog.FileName).ToList();
+                CityExtractorTxt extractor = new CityExtractorTxt();
+                extractor.ExtractCitiesFromLines(lines);
+            }
+
+        }
+
+        private void InitFields()
+        {
+            filePreview.Text = "Aucun fichier texte n'a été renseigné";
         }
     }
 }
