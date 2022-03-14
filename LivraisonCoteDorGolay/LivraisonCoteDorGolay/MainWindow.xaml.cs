@@ -42,7 +42,7 @@ namespace LivraisonCoteDorGolay
                 CityExtractorTxt extractor = new CityExtractorTxt();
                 List<City> extractedCities = extractor.ExtractCitiesFromLines(lines);
                 Tour tour = new TourCrescent(extractedCities);
-                Console.WriteLine(tour.getTourString());
+                Console.WriteLine(tour.DisplayTour());
 
                 filePreview.Text = File.ReadAllText(openFileDialog.FileName);
             }

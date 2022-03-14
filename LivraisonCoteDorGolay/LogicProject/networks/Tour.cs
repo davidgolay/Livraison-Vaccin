@@ -11,24 +11,33 @@ namespace LogicProject.networks
     {
         private List<City> cities;
 
+        public List<City> Cities { get => this.cities; }
+
         public Tour(List<City> cities)
         {
             this.cities = cities;
         }
 
-        public string getTourString()
+        public double Cost()
         {
-            string res = "";
+            double cost = 0;
+            City current;
+            City next;
 
-            if(cities != null)
+            for (int cur=0; cur < cities.Count - 1; cur++)
             {
-                foreach (City city in cities)
-                    res += city.ToString() + "\n";
+                current = cities.ToArray()[cur];
+                next = cities.ToArray()[cur + 1];
+                cost += current.getDistanceWith(next);
             }
-            else res = "Empty tour";
 
-            return res;
+            City firstCity = cities.ToArray()[0];
+            current = cities.ToArray()[cities.Count - 1];
+            cost += current.getDistanceWith(firstCity);
+            return cost;
         }
+
+        public abstract string DisplayTour();
 
     }
 }

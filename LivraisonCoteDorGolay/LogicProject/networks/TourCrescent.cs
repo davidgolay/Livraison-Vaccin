@@ -14,6 +14,17 @@ namespace LogicProject.networks
 
         }
 
-        
+        public override string DisplayTour()
+        {
+            string res = "";
+            if (base.Cities != null)
+            {
+                foreach (City city in base.Cities)
+                    res += city.ToString() + "\n";
+                res += "TOTAL COST: " + Cost();
+            }
+            else res = "Empty tour";
+            return res;
+        }
     }
 }
