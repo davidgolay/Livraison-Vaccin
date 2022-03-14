@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogicProject.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,23 @@ namespace LivraisonCoteDor.network
             this._lg = lg;
         }
 
+        public double getDistanceWith(City otherCity)
+        {
+            double x1 = this.Longitude;      
+            double y1 = this.Latitude;
+            double x2 = otherCity.Longitude;
+            double y2 = otherCity.Latitude;
+            return MyMath.GetDistanceBetweenDegreesCoordinates(x1, y1, x2, y2);
+        }
 
+        public double getDistanceBetween(City firstCity, City otherCity)
+        {
+            double x1 = firstCity.Longitude;
+            double y1 = firstCity.Latitude;
+            double x2 = otherCity.Longitude;
+            double y2 = otherCity.Latitude;
+            return MyMath.GetDistanceBetweenDegreesCoordinates(x1, y1, x2, y2);
+        }
 
     }
 

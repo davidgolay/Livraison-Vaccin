@@ -37,10 +37,11 @@ namespace LivraisonCoteDorGolay
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                filePreview.Text = File.ReadAllText(openFileDialog.FileName);
                 List<string> lines = File.ReadLines(openFileDialog.FileName).ToList();
                 CityExtractorTxt extractor = new CityExtractorTxt();
                 extractor.ExtractCitiesFromLines(lines);
+
+                filePreview.Text = File.ReadAllText(openFileDialog.FileName);
             }
 
         }
