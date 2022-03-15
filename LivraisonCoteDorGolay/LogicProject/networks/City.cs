@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LivraisonCoteDor.network
+namespace LogicProject.networks
 {
     public class City
     {

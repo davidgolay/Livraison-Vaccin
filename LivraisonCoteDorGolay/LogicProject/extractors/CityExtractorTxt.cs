@@ -1,10 +1,10 @@
-﻿using LivraisonCoteDor.network;
+﻿using LogicProject.networks;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Logic.generators
+namespace Logic.extractors
 {
     public class CityExtractorTxt
     {

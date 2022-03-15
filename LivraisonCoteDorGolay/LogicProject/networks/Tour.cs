@@ -1,5 +1,4 @@
-﻿using LivraisonCoteDor.network;
-using LogicProject.Utilities;
+﻿using LogicProject.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +13,10 @@ namespace LogicProject.networks
 
         public List<City> Cities { get => this.cities; }
 
-        public Tour(List<City> cities)
+        public Tour(List<City> cities=null)
         {
-            this.cities = new List<City>(cities);
+            if (cities == null) { this.cities = new List<City>(); }
+            else { this.cities = new List<City>(cities); }
         }
 
         public double Cost()
@@ -37,28 +37,6 @@ namespace LogicProject.networks
             current = cities.ToArray()[cities.Count - 1];
             cost += current.getDistanceWith(firstCity);
             return cost;
-        }
-
-
-        public City ClosestCity(City targetCity)
-        {
-            City closestCity = null;
-            double minimumDistance = double.PositiveInfinity;
-            double distance;
-            bool updatingClosestCondition;
-
-            foreach(City currentCity in this.cities)
-            {
-                distance = currentCity.getDistanceWith(targetCity);
-                updatingClosestCondition = (distance < minimumDistance) && (targetCity != currentCity);
-
-                if (updatingClosestCondition)
-                {
-                    minimumDistance = distance;
-                    closestCity = currentCity;
-                }
-            }
-            return closestCity;
         }
 
         public string DisplayTour()

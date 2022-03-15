@@ -1,6 +1,8 @@
-﻿using LivraisonCoteDor.network;
+﻿using Logic.extractors;
+using LogicProject.networks;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,17 @@ namespace TestUnitsProject
                 cities.Add(new City(i, "Ville", (double)i*spreadSize, (double)i*spreadSize));
             }
             return cities;
+        }
+
+        public static List<City> GenerateCitySetFromFileName(string fileName)
+        {
+            string startupPath = Environment.CurrentDirectory;
+            string path;
+            //path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Data\" + fileName);
+            path = Path.Combine(startupPath, @"Data\" + fileName);
+            List<string> lines = File.ReadLines(path, Encoding.UTF8).ToList();
+            CityExtractorTxt ce = new CityExtractorTxt();
+            return (ce.ExtractCitiesFromLines(lines));
         }
 
         [Fact]

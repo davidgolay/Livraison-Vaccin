@@ -1,5 +1,5 @@
-﻿using LivraisonCoteDor.network;
-using Logic.generators;
+﻿using Logic.extractors;
+using LogicProject.algorithmes;
 using LogicProject.networks;
 using LogicProject.Utilities;
 using Microsoft.Win32;
@@ -45,7 +45,8 @@ namespace LivraisonCoteDorGolay
                 CityMapper.ShuffleCities(extractedCities);
                 CityMapper.CrescentOrderCities(ref extractedCities);
 
-                Tour tour = new Tour(extractedCities);
+                TourSolver ts = new TourSolver(extractedCities);
+                Tour tour = ts.ClosestNeighbourMethod(extractedCities.ToArray()[0]);
 
                 Console.WriteLine(tour.DisplayTour());
 
