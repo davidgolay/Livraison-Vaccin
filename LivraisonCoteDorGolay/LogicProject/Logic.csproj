@@ -41,12 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="algorithmes\TourSolver.cs" />
     <Compile Include="extractors\CityExtractorTxt.cs" />
     <Compile Include="networks\City.cs" />
     <Compile Include="networks\Tour.cs" />
-    <Compile Include="networks\TourCrescent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\CityMapper.cs" />
     <Compile Include="Utilities\MyMath.cs" />
+    <Compile Include="Utilities\Randomizer.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

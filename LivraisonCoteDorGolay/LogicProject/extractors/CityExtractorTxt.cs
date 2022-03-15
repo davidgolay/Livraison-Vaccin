@@ -37,8 +37,6 @@ namespace Logic.generators
             char separator = ' ';
             string[] splitedLine = lineToSplit.Split(separator);
             bool okToParse = (splitedLine.Length == 4);
-            string s2 = splitedLine[2];
-            string s3 = splitedLine[3];
 
             if (okToParse)
             {

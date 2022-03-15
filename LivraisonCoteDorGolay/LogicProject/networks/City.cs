@@ -43,20 +43,14 @@ namespace LivraisonCoteDor.network
             return MyMath.GetDistanceBetweenDegreesCoordinates(x1, y1, x2, y2);
         }
 
-        public double getDistanceBetween(City firstCity, City otherCity)
-        {
-            double x1 = firstCity.Longitude;
-            double y1 = firstCity.Latitude;
-            double x2 = otherCity.Longitude;
-            double y2 = otherCity.Latitude;
-            return MyMath.GetDistanceBetweenDegreesCoordinates(x1, y1, x2, y2);
-        }
+        //methode d(v , A/B)
 
         public override string ToString()
         {
             string res = "ID: " + this.id + " NAME: " + this.name;
             return res;
         }
+
 
     }
 
