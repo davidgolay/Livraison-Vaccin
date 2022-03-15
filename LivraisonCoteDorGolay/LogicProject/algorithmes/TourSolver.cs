@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LogicProject.algorithmes
 {
-    public class TourSolver
+    public abstract class TourSolver
     {
 
         private Dictionary<City, bool> visitedCity = new Dictionary<City, bool>();
@@ -23,25 +23,7 @@ namespace LogicProject.algorithmes
             this.cities = new List<City>(cities);
         }
 
-        public Tour ClosestNeighbourMethod(City s)
-        {
-            Tour tour = new Tour();
-            ResetVisitedCity();
-            tour.Cities.Add(s);
-            this.visitedCity[s] = true;
-            City next = null;
-
-            while (this.visitedCity.ContainsValue(false))
-            {
-                next = this.ClosestCity(s);
-                this.visitedCity[next] = true;
-                tour.Cities.Add(next);
-                s = next;
-            }
-            return tour;
-        }
-
-
+        public abstract Tour Solve(City s);
 
         public City ClosestCity(City targetCity, bool unvisitedOnly = true )
         {

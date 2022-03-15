@@ -9,14 +9,14 @@ namespace TestUnitsProject
     public class TourSolverTest
     {
         [Fact]
-        public void ClosestNeighboursTest()
+        public void NearestNeighborTest()
         {
             List<City> cities;
             cities = CityListGenerator.GenerateCitySetFromFileName("top80.txt");
             //cities = CityListGenerator.GenerateLinearCoordsCitySet(90);
-            TourSolver ts = new TourSolver(cities);
+            TourSolver ts = new TourSolverNearestNeighbor(cities);
             City firstCity = cities.ToArray()[0];
-            Tour tour = ts.ClosestNeighbourMethod(firstCity);
+            Tour tour = ts.Solve(firstCity);
 
             double expected = 50d;
             double actual = tour.Cost();
@@ -29,7 +29,7 @@ namespace TestUnitsProject
         public void ClosestCityTest()
         {
             TourSolver ts;
-            ts = new TourSolver(CityListGenerator.GenerateCitySetFromFileName("top80.txt"));
+            ts = new TourSolverNearestNeighbor(CityListGenerator.GenerateCitySetFromFileName("top80.txt"));
             ts.ResetVisitedCity();
 
             City DijonExpectedClosest = ts.ClosestCity(ts.Cities.ToArray()[0]); 
@@ -55,7 +55,7 @@ namespace TestUnitsProject
         public void ResetVisitedTest()
         {
             List<City> cities = CityListGenerator.GenerateLinearCoordsCitySet(5);
-            TourSolver ts = new TourSolver(cities);
+            TourSolver ts = new TourSolverNearestNeighbor(cities);
 
             ts.ResetVisitedCity();
 
