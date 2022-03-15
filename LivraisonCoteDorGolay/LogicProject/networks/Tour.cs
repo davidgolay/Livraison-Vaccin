@@ -40,23 +40,24 @@ namespace LogicProject.networks
         }
 
 
-        public City ClosestCity(City target)
+        public City ClosestCity(City targetCity)
         {
             City closestCity = null;
-            double minDistance = 0;
-            double currentDistance = 0;
+            double minimumDistance = double.PositiveInfinity;
+            double distance;
+            bool updatingClosestCondition;
 
             foreach(City currentCity in this.cities)
             {
-                currentDistance = currentCity.getDistanceWith(target);
+                distance = currentCity.getDistanceWith(targetCity);
+                updatingClosestCondition = (distance < minimumDistance) && (targetCity != currentCity);
 
-                if(currentDistance < minDistance)
+                if (updatingClosestCondition)
                 {
-                    minDistance = currentDistance;
+                    minimumDistance = distance;
                     closestCity = currentCity;
                 }
             }
-
             return closestCity;
         }
 

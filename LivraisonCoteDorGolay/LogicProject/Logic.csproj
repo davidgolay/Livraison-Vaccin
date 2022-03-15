@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="algorithmes\TourSolver.cs" />
+    <Compile Include="drawer\CityDrawer.cs" />
     <Compile Include="extractors\CityExtractorTxt.cs" />
     <Compile Include="networks\City.cs" />
     <Compile Include="networks\Tour.cs" />

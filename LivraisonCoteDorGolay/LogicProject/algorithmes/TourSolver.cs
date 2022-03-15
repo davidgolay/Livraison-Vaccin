@@ -26,8 +26,10 @@ namespace LogicProject.algorithmes
 
             foreach(City c in cities)
             {
-                visitedCity[c] = false;
+                this.visitedCity[c] = false;
             }
+
+
 
             return tour;
         }

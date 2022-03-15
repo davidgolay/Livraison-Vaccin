@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicProject.Utilities
 {
-    static class MyMath
+    public class MyMath
     {
         public static double ConvertDegreesToRadians(double degrees)
         {
@@ -26,6 +26,26 @@ namespace LogicProject.Utilities
             double op2 = Math.Cos(y1) * Math.Cos(y2) * Math.Cos(x1 - x2);
             distance = Math.Abs(r * Math.Acos(op1 + op2));
             return distance;
+        }
+
+        public static double GetMinimum(List<double> doubles)
+        {
+            double min = 0;
+            foreach (double d in doubles)
+            {
+                if (d < min) min = d;
+            }
+            return min;
+        }
+
+        public static double GetMaximum(List<double> doubles)
+        {
+            double max = 0;
+            foreach (double d in doubles)
+            {
+                if (d > max) max = d;
+            }
+            return max;
         }
     }
 }
