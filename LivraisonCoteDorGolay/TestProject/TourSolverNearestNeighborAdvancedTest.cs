@@ -14,12 +14,10 @@ namespace TestUnitsProject
         {
             List<City> cities;
             cities = CityListGenerator.GenerateCitySetFromFileName("top80.txt");
-            TourSolver ts = new TourSolverNearestNeighbor(cities);
-            City firstCity = cities.ToArray()[0];
-            Tour tour = ts.Solve(firstCity);
+            TourSolver tscna = new TourSolverNearestNeighborAdvanced(cities);
 
-            double expected = 713;
-            double actual = tour.Cost;
+            double expected = 674;
+            double actual = tscna.Solve(null).Cost;
 
             Assert.Equal(Math.Round(expected), Math.Round(actual));
         }

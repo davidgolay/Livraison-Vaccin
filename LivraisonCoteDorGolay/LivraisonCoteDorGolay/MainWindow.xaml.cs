@@ -45,7 +45,7 @@ namespace LivraisonCoteDorGolay
                 CityMapper.ShuffleCities(extractedCities);
                 CityMapper.CrescentOrderCities(ref extractedCities);
 
-                TourSolver ts = new TourSolverNearestNeighbor(extractedCities);
+                TourSolver ts = new TourSolverNearestNeighborAdvanced(extractedCities);
                 Tour tour = ts.Solve(extractedCities.ToArray()[0]);
 
                 Console.WriteLine(tour.DisplayTour());
