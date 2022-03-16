@@ -31,7 +31,7 @@ namespace TestUnitsProject
         {
             Tour tour = new Tour(CityListGenerator.GenerateCitySetFromFileName("top80.txt"));
             double expected = 2688.1913483752396d;
-            double actual = tour.Cost();
+            double actual = tour.Cost;
             Assert.Equal(expected, actual);
         }
 

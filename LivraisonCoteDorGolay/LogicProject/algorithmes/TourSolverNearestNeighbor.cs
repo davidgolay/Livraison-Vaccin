@@ -19,6 +19,7 @@ namespace LogicProject.algorithmes
             Tour tour = new Tour();
             ResetVisitedCity();
             tour.Cities.Add(s);
+
             base.VisitedCity[s] = true;
             City next = null;
 

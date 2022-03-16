@@ -2,6 +2,7 @@
 using LogicProject.networks;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Xunit;
 
 namespace TestUnitsProject
@@ -9,30 +10,13 @@ namespace TestUnitsProject
     public class TourSolverTest
     {
         [Fact]
-        public void NearestNeighborTest()
-        {
-            List<City> cities;
-            cities = CityListGenerator.GenerateCitySetFromFileName("top80.txt");
-            //cities = CityListGenerator.GenerateLinearCoordsCitySet(90);
-            TourSolver ts = new TourSolverNearestNeighbor(cities);
-            City firstCity = cities.ToArray()[0];
-            Tour tour = ts.Solve(firstCity);
-
-            double expected = 50d;
-            double actual = tour.Cost();
-
-            Assert.Equal(expected, actual);
-        }
-
-
-        [Fact]
         public void ClosestCityTest()
         {
             TourSolver ts;
             ts = new TourSolverNearestNeighbor(CityListGenerator.GenerateCitySetFromFileName("top80.txt"));
             ts.ResetVisitedCity();
 
-            City DijonExpectedClosest = ts.ClosestCity(ts.Cities.ToArray()[0]); 
+            City DijonExpectedClosest = ts.ClosestCity(ts.Cities.ToArray()[0]);
             City DijonActualClosest = ts.Cities.ToArray()[3]; //actually 'Talant' 
 
             Assert.Equal(DijonExpectedClosest, DijonActualClosest);
@@ -63,6 +47,25 @@ namespace TestUnitsProject
             bool actual = false;
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void BestTourSolutionTest()
+        {
+            TourSolver ts = new TourSolverNearestNeighbor(null);
+            Tour t1 = new Tour(CityListGenerator.GenerateLinearCoordsCitySet(5));
+            Tour t2 = new Tour(CityListGenerator.GenerateLinearCoordsCitySet(10));
+            Tour t3 = new Tour(CityListGenerator.GenerateLinearCoordsCitySet(3));
+            List<Tour> tours = new List<Tour>();
+            tours.Add(t1);
+            tours.Add(t2);
+            tours.Add(t3);
+
+            Tour expected = t3;
+            Tour actual = ts.BestTourSolution(tours);
+
+            Assert.Equal(expected, actual);
+
         }
     }
 }

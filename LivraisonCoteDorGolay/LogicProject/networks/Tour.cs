@@ -11,7 +11,32 @@ namespace LogicProject.networks
     {
         private List<City> cities;
 
+        private double cost;
+
         public List<City> Cities { get => this.cities; }
+
+        public double Cost
+        {
+            get {
+                double cost = 0;
+                City current;
+                City next;
+
+                for (int cur = 0; cur < cities.Count - 1; cur++)
+                {
+                    current = cities.ToArray()[cur];
+                    next = cities.ToArray()[cur + 1];
+                    cost += current.getDistanceWith(next);
+                }
+
+                // Add the distance to starting point
+                City firstCity = cities.ToArray()[0];
+                current = cities.ToArray()[cities.Count - 1];
+                cost += current.getDistanceWith(firstCity);
+                return cost;
+            }
+            set { this.cost = value; }
+        }
 
         public Tour(List<City> cities=null)
         {
@@ -19,25 +44,25 @@ namespace LogicProject.networks
             else { this.cities = new List<City>(cities); }
         }
 
-        public double Cost()
-        {
-            double cost = 0;
-            City current;
-            City next;
+        //public double Cost()
+        //{
+        //    double cost = 0;
+        //    City current;
+        //    City next;
 
-            for (int cur = 0; cur < cities.Count - 1; cur++)
-            {
-                current = cities.ToArray()[cur];
-                next = cities.ToArray()[cur + 1];
-                cost += current.getDistanceWith(next);
-            }
+        //    for (int cur = 0; cur < cities.Count - 1; cur++)
+        //    {
+        //        current = cities.ToArray()[cur];
+        //        next = cities.ToArray()[cur + 1];
+        //        cost += current.getDistanceWith(next);
+        //    }
 
-            // Add the distance to starting point
-            City firstCity = cities.ToArray()[0];
-            current = cities.ToArray()[cities.Count - 1];
-            cost += current.getDistanceWith(firstCity);
-            return cost;
-        }
+        //    // Add the distance to starting point
+        //    City firstCity = cities.ToArray()[0];
+        //    current = cities.ToArray()[cities.Count - 1];
+        //    cost += current.getDistanceWith(firstCity);
+        //    return cost;
+        //}
 
         public string DisplayTour()
         {
@@ -46,7 +71,7 @@ namespace LogicProject.networks
             {
                 foreach (City city in this.cities)
                     res += city.ToString() + "\n";
-                res += "TOTAL COST: " + Cost();
+                res += "TOTAL COST: " + Cost;
             }
             else res = "Empty tour";
             return res;

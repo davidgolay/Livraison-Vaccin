@@ -20,7 +20,8 @@ namespace LogicProject.algorithmes
 
         public TourSolver(List<City> cities)
         {
-            this.cities = new List<City>(cities);
+            if(cities != null) 
+                this.cities = new List<City>(cities);
         }
 
         public abstract Tour Solve(City s);
@@ -52,6 +53,23 @@ namespace LogicProject.algorithmes
         {      
             foreach (City c in this.cities)
                 this.visitedCity[c] = false;
+        }
+
+        public Tour BestTourSolution(List<Tour> tours)
+        {
+            double bestCost = double.PositiveInfinity;
+            Tour bestTour = null;
+
+            foreach(Tour currentTour in tours)
+            {
+                if(currentTour.Cost < bestCost)
+                {
+                    bestTour = currentTour;
+                    bestCost = currentTour.Cost;
+                }
+            }
+
+            return bestTour;
         }
     }
 }
