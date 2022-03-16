@@ -11,7 +11,6 @@ namespace LogicProject.algorithmes
     {
         public TourSolverNearestNeighbor(List<City> cities) : base(cities)
         {
-
         }
 
         public override Tour Solve(City s)
@@ -31,11 +30,6 @@ namespace LogicProject.algorithmes
                 s = next;
             }
             return tour;
-        }
-
-        public override string ToString()
-        {
-            return base.ToString();
         }
     }
 }

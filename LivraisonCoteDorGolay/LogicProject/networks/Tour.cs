@@ -10,7 +10,6 @@ namespace LogicProject.networks
     public class Tour
     {
         private List<City> cities;
-
         private double cost;
 
         public List<City> Cities { get => this.cities; }

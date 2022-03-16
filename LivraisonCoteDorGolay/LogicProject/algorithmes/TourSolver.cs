@@ -68,7 +68,6 @@ namespace LogicProject.algorithmes
                     bestCost = currentTour.Cost;
                 }
             }
-
             return bestTour;
         }
     }
