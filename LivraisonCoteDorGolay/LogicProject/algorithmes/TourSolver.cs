@@ -26,23 +26,23 @@ namespace LogicProject.algorithmes
 
         public abstract Tour Solve(City s);
 
-        public City ClosestCity(City targetCity, bool unvisitedOnly = true )
+        public City ClosestCity(City targetCity, bool unvisitedOnly = true)
         {
             City closestCity = null;
-            double minimumDistance = double.PositiveInfinity;
+            double minDistance = double.PositiveInfinity;
             double distance;
-            bool updatingClosestCondition;
+            bool updateCondition;
 
             foreach (City currentCity in cities)
             {
                 distance = currentCity.getDistanceWith(targetCity);
 
-                updatingClosestCondition = (distance < minimumDistance) && (targetCity != currentCity);
-                if (unvisitedOnly){ updatingClosestCondition = updatingClosestCondition && (this.visitedCity[currentCity] == false); }
+                updateCondition = (distance < minDistance) && (targetCity != currentCity);
+                if (unvisitedOnly){ updateCondition = updateCondition && (this.visitedCity[currentCity] == false); }
 
-                if (updatingClosestCondition)
+                if (updateCondition)
                 {
-                    minimumDistance = distance;
+                    minDistance = distance;
                     closestCity = currentCity;
                 }
             }

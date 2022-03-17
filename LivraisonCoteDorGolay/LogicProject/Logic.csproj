@@ -50,6 +50,7 @@
     <Compile Include="networks\City.cs" />
     <Compile Include="networks\Tour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TourSolverNearInsertion.cs" />
     <Compile Include="Utilities\CityMapper.cs" />
     <Compile Include="Utilities\MyMath.cs" />
     <Compile Include="Utilities\Randomizer.cs" />

@@ -9,7 +9,7 @@ namespace LogicProject.algorithmes
 {
     public class DistantCitiesSolver
     {
-        public List<City> GetMostDistantCities(List<City> cities)
+        public Tour GetMostDistantCities(List<City> cities)
         {
             City s = cities.ElementAt(0);
             List<City> mostDistantCities = new List<City>();
@@ -34,8 +34,8 @@ namespace LogicProject.algorithmes
             }
             mostDistantCities.Add(c1);
             mostDistantCities.Add(c2);
-            return mostDistantCities;
-        }
 
+            return new Tour(mostDistantCities);
+        }
     }
 }

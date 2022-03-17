@@ -15,13 +15,13 @@ namespace TestUnitsProject
         {
             DistantCitiesSolver solver = new DistantCitiesSolver();
             List<City> cities = CityListGenerator.GenerateLinearCoordsCitySet(5);
-            List<City> distantCouple = solver.GetMostDistantCities(cities);
+            Tour distantCouple = solver.GetMostDistantCities(cities);
 
             City firstExpected = cities.ElementAt(0);
-            City firstActual = distantCouple.ElementAt(0);
+            City firstActual = distantCouple.Cities.ElementAt(0);
 
             City secondExpected = cities.ElementAt(4);
-            City secondActual = distantCouple.ElementAt(1);
+            City secondActual = distantCouple.Cities.ElementAt(1);
 
             Assert.Equal(firstExpected, firstActual);
             Assert.Equal(secondExpected, secondActual);
@@ -39,10 +39,10 @@ namespace TestUnitsProject
             distantCouple = solver.GetMostDistantCities(cities);
 
             firstExpected = cities.ElementAt(0); //c1 expected
-            firstActual = distantCouple.ElementAt(0);
+            firstActual = distantCouple.Cities.ElementAt(0);
 
             secondExpected = cities.ElementAt(2); //c3 expected
-            secondActual = distantCouple.ElementAt(1);
+            secondActual = distantCouple.Cities.ElementAt(1);
 
             Assert.Equal(firstExpected, firstActual);
             Assert.Equal(secondExpected, secondActual);
@@ -53,15 +53,16 @@ namespace TestUnitsProject
             cities = CityListGenerator.GenerateCitySetFromFileName("top80.txt");
             distantCouple = solver.GetMostDistantCities(cities);
 
-            firstExpected = cities.ElementAt(23);
-            firstActual = distantCouple.ElementAt(0);
+            firstExpected = cities.ElementAt(23); //23
+            firstActual = distantCouple.Cities.ElementAt(0);
 
-            secondExpected = cities.ElementAt(68);
-            secondActual = distantCouple.ElementAt(1);
+            secondExpected = cities.ElementAt(68); //68
+            secondActual = distantCouple.Cities.ElementAt(1);
 
             Assert.Equal(firstExpected, firstActual);
             Assert.Equal(secondExpected, secondActual);
 
         }
+
     }
 }
