@@ -41,24 +41,33 @@ namespace LivraisonCoteDorGolay
             {
                 List<string> lines = File.ReadLines(openFileDialog.FileName).ToList();
                 CityExtractorTxt extractor = new CityExtractorTxt();
-                List<City> extractedCities = extractor.ExtractCitiesFromLines(lines);
-                CityMapper.ShuffleCities(extractedCities);
-                CityMapper.CrescentOrderCities(ref extractedCities);
-
-                TourSolver ts = new TourSolverNearestNeighborAdvanced(extractedCities);
-
-                Tour tour = ts.Solve(extractedCities.ElementAt(0));
-
-                Console.WriteLine(tour.DisplayTour());
-
+                this._cities = extractor.ExtractCitiesFromLines(lines);
                 filePreview.Text = File.ReadAllText(openFileDialog.FileName);
+
+                GoSolvingWindow();
             }
 
+        }
+
+        private void GoSolvingWindow()
+        {
+            if (_cities != null) {
+                try
+                {
+                    SolvingWindow second = new SolvingWindow(_cities);
+                    second.Show();
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(x.Message);
+                }
+            }
         }
 
         private void InitFields()
         {
             filePreview.Text = "Aucun fichier texte n'a été renseigné";
         }
+
     }
 }
