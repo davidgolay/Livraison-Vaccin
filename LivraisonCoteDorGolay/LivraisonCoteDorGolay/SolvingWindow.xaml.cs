@@ -1,4 +1,5 @@
-﻿using LogicProject.algorithmes;
+﻿using LogicProject;
+using LogicProject.algorithms;
 using LogicProject.networks;
 using System;
 using System.Collections.Generic;
@@ -31,19 +32,28 @@ namespace LivraisonCoteDorGolay
         private void OnNearestNeighborSolve(object sender, RoutedEventArgs e)
         {
             List<City> citiesToSolve = new List<City>(cities);
-            TourSolver solver = new TourSolverNearestNeighbor(citiesToSolve);
+            Solver solver = new SolverNearestNeighbor(citiesToSolve);
             Tour solvedTour = solver.Solve(citiesToSolve.ElementAt(0));
-            solutionText.Text = solvedTour.DisplayTour();
+            solutionNNText.Text = solvedTour.DisplayTour();
             costNearestNeighbor.Text = Math.Round(solvedTour.Cost, 4).ToString();
         }
 
-        //private void OnNearestNeighborAdvancedSolve(object sender, RoutedEventArgs e)
-        //{
-        //    List<City> citiesToSolve = new List<City>(cities);
-        //    TourSolver solver = new TourSolverNearestNeighborAdvanced(citiesToSolve);
-        //    Tour solvedTour = solver.Solve(citiesToSolve.ElementAt(0));
-        //    solutionText.Text = solvedTour.DisplayTour();
-        //    costNearestNeighborAdvanced.Text = Math.Round(solvedTour.Cost, 4).ToString();
-        //}
+        private void OnNearestNeighborAdvancedSolve(object sender, RoutedEventArgs e)
+        {
+            List<City> citiesToSolve = new List<City>(cities);
+            Solver solver = new SolverNearestNeighborAdvanced(citiesToSolve);
+            Tour solvedTour = solver.Solve(citiesToSolve.ElementAt(0));
+            solutionNNAText.Text = solvedTour.DisplayTour();
+            costNearestNeighborAdvanced.Text = Math.Round(solvedTour.Cost, 4).ToString();
+        }
+
+        private void OnNearInsertionSolve(object sender, RoutedEventArgs e)
+        {
+            List<City> citiesToSolve = new List<City>(cities);
+            Solver solver = new SolverNearInsertion(citiesToSolve);
+            Tour solvedTour = solver.Solve(citiesToSolve.ElementAt(0));
+            solutionNIText.Text = solvedTour.DisplayTour();
+            costNearInsertion.Text = Math.Round(solvedTour.Cost, 4).ToString();
+        }
     }
 }

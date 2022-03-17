@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicProject.algorithmes
+namespace LogicProject.algorithms
 {
-    public class TourSolverNearestNeighborAdvanced : TourSolver
+    public class SolverNearestNeighborAdvanced : Solver
     {
-        public TourSolverNearestNeighborAdvanced(List<City> cities) : base(cities)
+        public SolverNearestNeighborAdvanced(List<City> cities) : base(cities)
         {
         }
 
         public override Tour Solve(City s)
         {
-            TourSolverNearestNeighbor tscn = new TourSolverNearestNeighbor(base.Cities);
+            SolverNearestNeighbor tscn = new SolverNearestNeighbor(base.Cities);
             List<Tour> tours = new List<Tour>();
 
             foreach(City c in base.Cities)

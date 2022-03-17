@@ -1,4 +1,4 @@
-﻿using LogicProject.algorithmes;
+﻿using LogicProject.algorithms;
 using LogicProject.networks;
 using System;
 using System.Collections.Generic;
@@ -7,13 +7,13 @@ using Xunit;
 
 namespace TestUnitsProject
 {
-    public class TourSolverTest
+    public class SolverTest
     {
         [Fact]
         public void ClosestCityTest()
         {
-            TourSolver ts;
-            ts = new TourSolverNearestNeighbor(CityListGenerator.GenerateCitySetFromFileName("top80.txt"));
+            Solver ts;
+            ts = new SolverNearestNeighbor(CityListGenerator.GenerateCitySetFromFileName("top80.txt"));
             ts.ResetVisitedCity();
 
             City DijonExpectedClosest = ts.ClosestCity(ts.Cities.ToArray()[0]);
@@ -39,7 +39,7 @@ namespace TestUnitsProject
         public void ResetVisitedTest()
         {
             List<City> cities = CityListGenerator.GenerateLinearCoordsCitySet(5);
-            TourSolver ts = new TourSolverNearestNeighbor(cities);
+            Solver ts = new SolverNearestNeighbor(cities);
 
             ts.ResetVisitedCity();
 
@@ -52,7 +52,7 @@ namespace TestUnitsProject
         [Fact]
         public void BestTourSolutionTest()
         {
-            TourSolver ts = new TourSolverNearestNeighbor(null);
+            Solver ts = new SolverNearestNeighbor(null);
             Tour t1 = new Tour(CityListGenerator.GenerateLinearCoordsCitySet(5));
             Tour t2 = new Tour(CityListGenerator.GenerateLinearCoordsCitySet(10));
             Tour t3 = new Tour(CityListGenerator.GenerateLinearCoordsCitySet(3));

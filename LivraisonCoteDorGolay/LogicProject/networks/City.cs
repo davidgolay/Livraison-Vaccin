@@ -34,6 +34,11 @@ namespace LogicProject.networks
             this.longitude = longitude;
         }
 
+        /// <summary>
+        /// Compute the distance of this instance city with the city passed in params
+        /// </summary>
+        /// <param name="otherCity">The other city</param>
+        /// <returns>Distance between Instance City and city passed in params</returns>
         public double getDistanceWith(City otherCity)
         {
             double x1 = this.Longitude;      
@@ -50,25 +55,25 @@ namespace LogicProject.networks
         /// <param name="A">starting city</param>
         /// <param name="B">lasting city</param>
         /// <returns></returns>
-        public double DetourCost(City A, City B)
+        public double CostDetour(City A, City B)
         {
             double detourCost;
-            detourCost = A.getDistanceWith(this) + this.getDistanceWith(B) - A.getDistanceWith(B);        
+            double dAV = A.getDistanceWith(this);
+            double dVB = this.getDistanceWith(B);
+            double dAB = A.getDistanceWith(B);
+            detourCost = dAV + dVB - dAB;        
             return detourCost;
         }
 
-        public double DetourCost(Tour tour)
+        public double CostSurplus(Tour tour)
         {
-            City c1;
-            City c2;
             double minimumCost = double.PositiveInfinity;
-            double currentCost;
 
             for (int i = 0; i < tour.Cities.Count - 1; i++)
             {
-                c1 = tour.Cities.ElementAt(i);
-                c2 = tour.Cities.ElementAt(i + 1);
-                currentCost = this.DetourCost(c1, c2);
+                City c1 = tour.Cities.ElementAt(i);
+                City c2 = tour.Cities.ElementAt(i + 1);
+                double currentCost = this.CostDetour(c1, c2);
 
                 if (currentCost < minimumCost)
                 {
@@ -78,34 +83,31 @@ namespace LogicProject.networks
             return minimumCost;
         }
 
-        public Tour TourDetourBy(Tour tour)
+        public Tour TourMinimumCostInsertion(Tour tourToInsertInto)
         {
-            City c1;
-            City c2;
-            Tour newTour = null;
             double minimumCost = double.PositiveInfinity;
-            double currentCost;
+            int indexOfInsertion = 0;
 
-            for(int i = 0; i<tour.Cities.Count-1; i++)
+            for(int i = 0; i< tourToInsertInto.Cities.Count-1; i++)
             {
-                c1 = tour.Cities.ElementAt(i);
-                c2 = tour.Cities.ElementAt(i + 1);
-                currentCost = this.DetourCost(c1, c2);
-
+                City c1 = tourToInsertInto.Cities.ElementAt(i);
+                City c2 = tourToInsertInto.Cities.ElementAt(i + 1);
+                double currentCost = this.CostDetour(c1, c2);
+                
                 if(currentCost < minimumCost)
                 {
-                    newTour = tour;
-                    newTour.Cities.Insert(i, this);
+                    minimumCost = currentCost;
+                    indexOfInsertion = i+1;
                 }
             }
-            return newTour;
+            tourToInsertInto.Cities.Insert(indexOfInsertion, this);
+            return tourToInsertInto;
         }
-
 
 
         public override string ToString()
         {
-            string res = "ID: " + this.id + " NAME: " + this.name;
+            string res = "[" + this.id + "] " + this.name;
             return res;
         }
 

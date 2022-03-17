@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicProject.algorithmes
+namespace LogicProject.algorithms
 {
-    public abstract class TourSolver
+    public abstract class Solver
     {
 
         private Dictionary<City, bool> visitedCity = new Dictionary<City, bool>();
@@ -18,13 +18,13 @@ namespace LogicProject.algorithmes
 
         public List<City> Cities { get => this.cities;  }
 
-        public TourSolver(List<City> cities)
+        public Solver(List<City> cities)
         {
             if(cities != null) 
                 this.cities = new List<City>(cities);
         }
 
-        public abstract Tour Solve(City s);
+        public abstract Tour Solve(City s=null);
 
         public City ClosestCity(City targetCity, bool unvisitedOnly = true)
         {

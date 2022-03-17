@@ -41,16 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="algorithmes\DistantCitiesSolver.cs" />
-    <Compile Include="algorithmes\TourSolver.cs" />
-    <Compile Include="algorithmes\TourSolverNearestNeighbor.cs" />
-    <Compile Include="algorithmes\TourSolverNearestNeighborAdvanced.cs" />
+    <Compile Include="algorithms\SolverDistantCities.cs" />
+    <Compile Include="algorithms\Solver.cs" />
+    <Compile Include="algorithms\SolverNearestNeighbor.cs" />
+    <Compile Include="algorithms\SolverNearestNeighborAdvanced.cs" />
     <Compile Include="drawer\CityDrawer.cs" />
     <Compile Include="extractors\CityExtractorTxt.cs" />
     <Compile Include="networks\City.cs" />
     <Compile Include="networks\Tour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TourSolverNearInsertion.cs" />
+    <Compile Include="algorithms\SolverNearInsertion.cs" />
     <Compile Include="Utilities\CityMapper.cs" />
     <Compile Include="Utilities\MyMath.cs" />
     <Compile Include="Utilities\Randomizer.cs" />

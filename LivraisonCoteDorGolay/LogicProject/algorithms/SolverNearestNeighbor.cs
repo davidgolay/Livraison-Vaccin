@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicProject.algorithmes
+namespace LogicProject.algorithms
 {
-    public class TourSolverNearestNeighbor : TourSolver
+    public class SolverNearestNeighbor : Solver
     {
-        public TourSolverNearestNeighbor(List<City> cities) : base(cities)
+        public SolverNearestNeighbor(List<City> cities) : base(cities)
         {
         }
 

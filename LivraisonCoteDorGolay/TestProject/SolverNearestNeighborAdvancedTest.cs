@@ -1,4 +1,4 @@
-﻿using LogicProject.algorithmes;
+﻿using LogicProject.algorithms;
 using LogicProject.networks;
 using System;
 using System.Collections.Generic;
@@ -7,14 +7,14 @@ using Xunit;
 
 namespace TestUnitsProject
 {
-    public class TourSolverNearestNeighborAdvancedTest
+    public class SolverNearestNeighborAdvancedTest
     {
         [Fact]
         public void NearestNeighborAdvancedTest()
         {
             List<City> cities;
             cities = CityListGenerator.GenerateCitySetFromFileName("top80.txt");
-            TourSolver tscna = new TourSolverNearestNeighborAdvanced(cities);
+            Solver tscna = new SolverNearestNeighborAdvanced(cities);
 
             double expected = 674;
             double actual = tscna.Solve(null).Cost;

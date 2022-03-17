@@ -1,5 +1,4 @@
 ﻿using Logic.extractors;
-using LogicProject.algorithmes;
 using LogicProject.networks;
 using LogicProject.Utilities;
 using Microsoft.Win32;

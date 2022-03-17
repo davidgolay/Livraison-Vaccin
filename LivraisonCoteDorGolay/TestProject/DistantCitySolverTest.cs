@@ -1,4 +1,4 @@
-﻿using LogicProject.algorithmes;
+﻿using LogicProject.algorithms;
 using LogicProject.networks;
 using System;
 using System.Collections.Generic;
@@ -13,9 +13,10 @@ namespace TestUnitsProject
         [Fact]
         public void GetMostDistantCitiesTest()
         {
-            DistantCitiesSolver solver = new DistantCitiesSolver();
+            
             List<City> cities = CityListGenerator.GenerateLinearCoordsCitySet(5);
-            Tour distantCouple = solver.GetMostDistantCities(cities);
+            DistantCitiesSolver solver = new DistantCitiesSolver(cities);
+            Tour distantCouple = solver.GetMostDistantCities();
 
             City firstExpected = cities.ElementAt(0);
             City firstActual = distantCouple.Cities.ElementAt(0);
@@ -28,7 +29,6 @@ namespace TestUnitsProject
 
 
             //With custom data set 
-            solver = new DistantCitiesSolver();
             City c1 = new City(1, "c1", 2, 0); //|        c3   |
             City c2 = new City(2, "c2", 3, 0); //|             |
             City c3 = new City(3, "c3", 6, 3); //|             |
@@ -36,7 +36,8 @@ namespace TestUnitsProject
 
             cities.Clear();
             cities.Add(c1); cities.Add(c2); cities.Add(c3); cities.Add(c4);
-            distantCouple = solver.GetMostDistantCities(cities);
+            solver = new DistantCitiesSolver(cities);
+            distantCouple = solver.GetMostDistantCities();
 
             firstExpected = cities.ElementAt(0); //c1 expected
             firstActual = distantCouple.Cities.ElementAt(0);
@@ -49,20 +50,18 @@ namespace TestUnitsProject
 
 
             //With real data set 
-            solver = new DistantCitiesSolver();
             cities = CityListGenerator.GenerateCitySetFromFileName("top80.txt");
-            distantCouple = solver.GetMostDistantCities(cities);
+            solver = new DistantCitiesSolver(cities);
+            distantCouple = solver.GetMostDistantCities();
 
-            firstExpected = cities.ElementAt(23); //23
+            firstExpected = cities.ElementAt(23); //23 --> Seurre
             firstActual = distantCouple.Cities.ElementAt(0);
 
-            secondExpected = cities.ElementAt(68); //68
+            secondExpected = cities.ElementAt(68); //68 --> SAINTE-COLOMBE-SUR-SEINE
             secondActual = distantCouple.Cities.ElementAt(1);
 
             Assert.Equal(firstExpected, firstActual);
             Assert.Equal(secondExpected, secondActual);
-
         }
-
     }
 }

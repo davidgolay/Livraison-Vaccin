@@ -18,7 +18,7 @@ namespace TestUnitsProject
 
             for(int i=0; i<wanted; i++)
             {
-                cities.Add(new City(i, "Ville", (double)i*spreadSize, (double)i*spreadSize));
+                cities.Add(new City(i, "", (double)i*spreadSize, (double)i*spreadSize));
             }
             return cities;
         }

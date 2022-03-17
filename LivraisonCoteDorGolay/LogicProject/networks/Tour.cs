@@ -50,7 +50,6 @@ namespace LogicProject.networks
             {
                 foreach (City city in this.cities)
                     res += city.ToString() + "\n";
-                res += "TOTAL COST: " + Cost;
             }
             else res = "Empty tour";
             return res;
