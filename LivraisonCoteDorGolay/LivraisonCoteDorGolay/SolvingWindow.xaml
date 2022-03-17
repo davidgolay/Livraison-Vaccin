@@ -5,35 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LivraisonCoteDorGolay"
         mc:Ignorable="d"
-        Title="SolvingWindow" Height="450" Width="800">
-    <Grid Margin="10">
+        Title="SolvingWindow" Height="450" Width="800" FontFamily="Microsoft JhengHei" Background="#FFCDCDCD">
+
+    <Grid Margin="10,10,10,10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
         <Grid Grid.Column="0" Grid.Row="1" Margin="5,0">
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition Height="8*"/>
+                <RowDefinition Height="7*"/>
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Solution" VerticalAlignment="Bottom" />
-            <TextBox Grid.Row="1" x:Name="solutionText" TextWrapping="Wrap" Text="Not computed" />
+            <Label Grid.Row="0" Content="Nearest Neighbor Solution :" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontWeight="Bold" FontSize="14" />
+            <TextBox Grid.Row="1" x:Name="solutionText" TextWrapping="Wrap" Text="Not computed" Margin="0,0,-2,0" Padding="5" Background="#FFE2E2E2" />
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Cost :" VerticalAlignment="Center" HorizontalAlignment="Right" />
-                <TextBox Grid.Column="1" x:Name="costNearestNeighbor" TextWrapping="Wrap" Text="Not computed" Margin="0,5" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" />
+                <Label Grid.Column="0" Content="Cost :" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" />
+                <TextBox Grid.Column="1" x:Name="costNearestNeighbor" TextWrapping="Wrap" Text="Not computed" Margin="0,5" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Padding="0,0,5,0" />
             </Grid>
-            <Button Grid.Row="3" Content="Nearest Neighbor" Click="OnNearestNeighborSolve"/>
+            <Button Grid.Row="3" Content="Nearest Neighbor" Click="OnNearestNeighborSolve" Background="#FF1F2930" Foreground="White" FontSize="14" BorderBrush="#FF33434F" Cursor="Hand" FontWeight="Bold"/>
         </Grid>
 
     </Grid>

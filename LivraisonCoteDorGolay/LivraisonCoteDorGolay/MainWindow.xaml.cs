@@ -44,17 +44,17 @@ namespace LivraisonCoteDorGolay
                 this._cities = extractor.ExtractCitiesFromLines(lines);
                 filePreview.Text = File.ReadAllText(openFileDialog.FileName);
 
-                GoSolvingWindow();
+                GoSolvingWindow(openFileDialog.FileName);
             }
-
         }
 
-        private void GoSolvingWindow()
+        private void GoSolvingWindow(string name)
         {
             if (_cities != null) {
                 try
                 {
                     SolvingWindow second = new SolvingWindow(_cities);
+                    second.Title = " City Set " + name;
                     second.Show();
                 }
                 catch (Exception x)
@@ -66,7 +66,7 @@ namespace LivraisonCoteDorGolay
 
         private void InitFields()
         {
-            filePreview.Text = "Aucun fichier texte n'a été renseigné";
+            filePreview.Text = "You must add a city set .txt file";
         }
 
     }
