@@ -9,12 +9,19 @@ namespace LogicProject.algorithms
 {
     public abstract class SolverLocalResearch : Solver
     {
-        protected SolverLocalResearch(List<City> cities) : base(cities)
-        {
+        private Tour inputTour;
 
+        public Tour InputTour
+        {
+            get { return this.inputTour; }
         }
 
-        private Tour LocalResearch(Tour inputTour)
+        protected SolverLocalResearch(List<City> cities, Tour inputTour) : base(cities)
+        {
+            this.inputTour = inputTour;
+        }
+
+        protected Tour LocalResearch(Tour inputTour)
         {
             Tour currentTour = inputTour;
             bool finished = false;

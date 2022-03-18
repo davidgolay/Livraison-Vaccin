@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="algorithms\localResearchs\SolverLRFirstlyFirst.cs" />
     <Compile Include="algorithms\SolverDistantCities.cs" />
     <Compile Include="algorithms\Solver.cs" />
     <Compile Include="algorithms\localResearchs\SolverLocalResearch.cs" />
