@@ -40,7 +40,7 @@ namespace LogicProject.algorithms
                         next = c;
                     }                   
                 }
-                tour = next.TourMinimumCostInsertion(tour);
+                tour.TourMinimumCostInsertion(next);
                 citiesToVisit.Remove(next);
             }
 

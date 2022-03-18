@@ -83,27 +83,6 @@ namespace LogicProject.networks
             return minimumCost;
         }
 
-        public Tour TourMinimumCostInsertion(Tour tourToInsertInto)
-        {
-            double minimumCost = double.PositiveInfinity;
-            int indexOfInsertion = 0;
-
-            for(int i = 0; i< tourToInsertInto.Cities.Count-1; i++)
-            {
-                City c1 = tourToInsertInto.Cities.ElementAt(i);
-                City c2 = tourToInsertInto.Cities.ElementAt(i + 1);
-                double currentCost = this.CostDetour(c1, c2);
-                
-                if(currentCost < minimumCost)
-                {
-                    minimumCost = currentCost;
-                    indexOfInsertion = i+1;
-                }
-            }
-            tourToInsertInto.Cities.Insert(indexOfInsertion, this);
-            return tourToInsertInto;
-        }
-
 
         public override string ToString()
         {

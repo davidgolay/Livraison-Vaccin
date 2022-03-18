@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="algorithms\SolverDistantCities.cs" />
     <Compile Include="algorithms\Solver.cs" />
+    <Compile Include="algorithms\localResearchs\SolverLocalResearch.cs" />
     <Compile Include="algorithms\SolverNearestNeighbor.cs" />
     <Compile Include="algorithms\SolverNearestNeighborAdvanced.cs" />
     <Compile Include="drawer\CityDrawer.cs" />

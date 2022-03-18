@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicProject.networks
 {
-    public class Tour
+    public class Tour : ICloneable
     {
         private List<City> cities;
         private double cost;
@@ -34,13 +34,41 @@ namespace LogicProject.networks
                 cost += current.getDistanceWith(firstCity);
                 return cost;
             }
-            set { this.cost = value; }
         }
 
         public Tour(List<City> cities=null)
         {
             if (cities == null) { this.cities = new List<City>(); }
             else { this.cities = new List<City>(cities); }
+        }
+
+        public void TourMinimumCostInsertion(City cityToInsert)
+        {
+            double minimumCost = double.PositiveInfinity;
+            int indexOfInsertion = 0;
+            double currentCost;
+
+            for (int i = 0; i < this.Cities.Count - 1; i++)
+            {
+                City c1 = this.Cities.ElementAt(i);
+                City c2 = this.Cities.ElementAt(i + 1);
+                currentCost = cityToInsert.CostDetour(c1, c2);
+
+                if (currentCost < minimumCost)
+                {
+                    minimumCost = currentCost;
+                    indexOfInsertion = i+1;
+                }
+            }
+
+            City lastCity = this.Cities.ElementAt(this.Cities.Count - 1);
+            City firstCity = this.Cities.ElementAt(0);
+
+            currentCost = cityToInsert.CostDetour(lastCity, firstCity);
+            if (currentCost < minimumCost)
+                this.Cities.Insert(0, cityToInsert);
+            else
+                this.Cities.Insert(indexOfInsertion, cityToInsert);
         }
 
         public string DisplayTour()
@@ -55,6 +83,9 @@ namespace LogicProject.networks
             return res;
         }
 
-
+        public object Clone()
+        {
+            return new Tour(this.Cities);
+        }
     }
 }
