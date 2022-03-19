@@ -55,9 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="customComponents\GraphicSolverFactory.cs" />
+    <Compile Include="customComponents\GraphicSolverNearestNeighborAdvanced.cs" />
+    <Compile Include="customComponents\GraphicSolverNearestNeighboor.cs" />
+    <Compile Include="customComponents\GraphicSolverNearInsertion.cs" />
+    <Compile Include="customControls\SolverIHM.cs" />
+    <Compile Include="customComponents\GraphicSolver.cs" />
     <Compile Include="SolvingWindow.xaml.cs">
       <DependentUpon>SolvingWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="customControls\SolverStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,6 +81,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SolvingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

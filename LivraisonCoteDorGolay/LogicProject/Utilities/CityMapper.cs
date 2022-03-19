@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicProject.Utilities
 {
-    public class CityMapper
+    public static class CityMapper
     {
         public static List<City> ShuffleCities(List<City> citiesToShuffle)
         {
@@ -19,6 +19,18 @@ namespace LogicProject.Utilities
             var ordered = cities.OrderBy(t => t.Id);
             cities = new List<City>(ordered);
         }
+
+        public static IList<T> Swap<T>(this IList<T> list, int indexA, int indexB)
+        {
+            if (indexB > -1 && indexB < list.Count)
+            {
+                T tmp = list[indexA];
+                list[indexA] = list[indexB];
+                list[indexB] = tmp;
+            }
+            return list;
+        }
+
 
     }
 }

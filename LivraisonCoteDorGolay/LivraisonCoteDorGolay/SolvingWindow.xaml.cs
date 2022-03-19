@@ -1,5 +1,8 @@
-﻿using LogicProject;
+﻿using LivraisonCoteDorGolay.customComponents;
+using LivraisonCoteDorGolay.customControls;
+using LogicProject;
 using LogicProject.algorithms;
+using LogicProject.algorithms.localResearchs;
 using LogicProject.networks;
 using System;
 using System.Collections.Generic;
@@ -23,37 +26,33 @@ namespace LivraisonCoteDorGolay
     public partial class SolvingWindow : Window
     {
         private List<City> cities;
+        private List<Solver> solversColumn1;
+        private List<Solver> solversColumn2;
+        private List<Solver> solversColumn3;
+
         public SolvingWindow(List<City> cities)
         {
             InitializeComponent();
             this.cities = new List<City>(cities);
+            GloutonSolvers();
         }
 
-        private void OnNearestNeighborSolve(object sender, RoutedEventArgs e)
+        private void GloutonSolvers()
         {
-            List<City> citiesToSolve = new List<City>(cities);
-            Solver solver = new SolverNearestNeighbor(citiesToSolve);
-            Tour solvedTour = solver.Solve(citiesToSolve.ElementAt(0));
-            solutionNNText.Text = solvedTour.DisplayTour();
-            costNearestNeighbor.Text = Math.Round(solvedTour.Cost, 4).ToString();
-        }
+            GraphicSolver procheVoisin = GraphicSolverFactory.Create("plusProcheVoisin", new List<City>(cities));
+            procheVoisin.SolverGrid();
+            gloutonGrid.Children.Add(procheVoisin);
+            Grid.SetColumn(procheVoisin, 0);
 
-        private void OnNearestNeighborAdvancedSolve(object sender, RoutedEventArgs e)
-        {
-            List<City> citiesToSolve = new List<City>(cities);
-            Solver solver = new SolverNearestNeighborAdvanced(citiesToSolve);
-            Tour solvedTour = solver.Solve(citiesToSolve.ElementAt(0));
-            solutionNNAText.Text = solvedTour.DisplayTour();
-            costNearestNeighborAdvanced.Text = Math.Round(solvedTour.Cost, 4).ToString();
-        }
+            GraphicSolver procheVoisinAmeliore = GraphicSolverFactory.Create("plusProcheVoisinAméliore", new List<City>(cities));
+            procheVoisinAmeliore.SolverGrid();
+            gloutonGrid.Children.Add(procheVoisinAmeliore);
+            Grid.SetColumn(procheVoisinAmeliore, 1);
 
-        private void OnNearInsertionSolve(object sender, RoutedEventArgs e)
-        {
-            List<City> citiesToSolve = new List<City>(cities);
-            Solver solver = new SolverNearInsertion(citiesToSolve);
-            Tour solvedTour = solver.Solve(citiesToSolve.ElementAt(0));
-            solutionNIText.Text = solvedTour.DisplayTour();
-            costNearInsertion.Text = Math.Round(solvedTour.Cost, 4).ToString();
+            GraphicSolver insertionProche = GraphicSolverFactory.Create("insertionProche", new List<City>(cities));
+            insertionProche.SolverGrid();
+            gloutonGrid.Children.Add(insertionProche);
+            Grid.SetColumn(insertionProche, 2);
         }
     }
 }

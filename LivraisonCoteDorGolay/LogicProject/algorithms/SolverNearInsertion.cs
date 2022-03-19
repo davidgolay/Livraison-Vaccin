@@ -12,6 +12,7 @@ namespace LogicProject.algorithms
     {
         public SolverNearInsertion(List<City> cities) : base(cities)
         {
+            base.Name = "Insertion Proche";
         }
 
         public override Tour Solve(City s)

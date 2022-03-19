@@ -1,4 +1,5 @@
 ﻿using LogicProject.networks;
+using LogicProject.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,5 +43,22 @@ namespace LogicProject.algorithms
         }
 
         protected abstract Tour ExploreNeighborhood(Tour tour);
+
+        protected void SwitchIfBetter(ref Tour tour, City c1, City c2)
+        {
+            Tour outputTour = (Tour)tour.Clone();
+
+            int indexC1 = outputTour.Cities.IndexOf(c1);
+            int indexC2 = outputTour.Cities.IndexOf(c2);
+
+            List<City> swapedTourCities = (List<City>) CityMapper.Swap(outputTour.Cities, indexC1, indexC2);
+            outputTour = new Tour(swapedTourCities);
+
+            if (outputTour.Cost < tour.Cost)
+            {
+                tour = outputTour;
+            }
+        }
+
     }
 }

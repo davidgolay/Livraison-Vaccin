@@ -22,8 +22,14 @@ namespace LogicProject.algorithms.localResearchs
         protected override Tour ExploreNeighborhood(Tour tour)
         {
             Tour currentTour = (Tour) tour.Clone();
-
-            return currentTour;
+            Tour neighborTour = (Tour)tour.Clone();
+            for (int i=0; i<currentTour.Cities.Count-1; i++)
+            {
+                City c1 = currentTour.Cities.ElementAt(i);
+                City c2 = currentTour.Cities.ElementAt(i+1);
+                SwitchIfBetter(ref neighborTour, c1, c2 );
+            }
+            return neighborTour;
         }
     }
 }
