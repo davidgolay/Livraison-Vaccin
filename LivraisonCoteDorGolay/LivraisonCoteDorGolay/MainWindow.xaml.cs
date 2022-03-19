@@ -56,7 +56,7 @@ namespace LivraisonCoteDorGolay
 
 
                     SolvingWindow second = new SolvingWindow(_cities, fileName);
-                    second.Title = " City Set " + fullPath;
+                    second.Title = " Liste de ville " + fileName;
                     second.Show();
                 }
                 catch (Exception x)
@@ -68,7 +68,7 @@ namespace LivraisonCoteDorGolay
 
         private void InitFields()
         {
-            filePreview.Text = "You must add a city set .txt file";
+            filePreview.Text = "Vous devez importer un fichier .txt";
         }
 
     }

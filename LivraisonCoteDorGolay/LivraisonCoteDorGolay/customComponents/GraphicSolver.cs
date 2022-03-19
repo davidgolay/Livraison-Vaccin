@@ -92,15 +92,13 @@ namespace LivraisonCoteDorGolay
         /// </summary>
         public void SolverGrid()
         {
-            this.ShowGridLines = false;
-
             // Define the Rows
             RowDefinition rowDef1 = new RowDefinition();
             RowDefinition rowDef2 = new RowDefinition();
             RowDefinition rowDef3 = new RowDefinition();
             RowDefinition rowDef4 = new RowDefinition();
             RowDefinition rowDef5 = new RowDefinition();
-            rowDef4.Height = new GridLength(5.0, GridUnitType.Star);
+            rowDef4.Height = new GridLength(3.0, GridUnitType.Star);
             this.RowDefinitions.Add(rowDef1);
             this.RowDefinitions.Add(rowDef2);
             this.RowDefinitions.Add(rowDef3);
@@ -124,9 +122,11 @@ namespace LivraisonCoteDorGolay
             Grid.SetRow(solutionBox, 3);
             Grid.SetRow(costGrid, 4);
 
-            //Margin
+            //Margin and styles
             float margin = 5;
-            this.Margin = new Thickness(margin, 0, margin, 0);
+            this.Margin = new Thickness(margin, margin, margin, margin);
+            this.ShowGridLines = false;
+            this.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFADADAD"));
         }
 
         private Label GenerateLabel(string value)
@@ -139,7 +139,7 @@ namespace LivraisonCoteDorGolay
 
         private Grid GenerateTitleBox()
         {
-            lName = GenerateLabel(NameSolution);
+            lName = GenerateLabel("Methode de résolution " + NameSolution);
             lAdditiveDescription = GenerateLabel(AdditiveDescription);
 
             //Seeting weight and style
@@ -174,12 +174,14 @@ namespace LivraisonCoteDorGolay
         private Grid GenerateControlsGrid()
         {
             //Cost Label
-            Label l = new Label();
-            l.Content = "Liste " + parent.FileNameUsed;
-            l.VerticalAlignment = VerticalAlignment.Center;
-            l.HorizontalAlignment = HorizontalAlignment.Right;
-            l.FontSize = 12;
-            //l.SetValue(Label.FontWeightProperty, FontWeights.Bold);
+            TextBlock tb = new TextBlock();
+            tb.Text = "A partir de " + parent.FileNameUsed;
+            tb.VerticalAlignment = VerticalAlignment.Center;
+            tb.HorizontalAlignment = HorizontalAlignment.Right;
+            tb.FontSize = 12;
+            tb.Padding = new Thickness(0, 0, 5, 0);
+            tb.TextWrapping = TextWrapping.Wrap;
+            tb.SetValue(Label.FontWeightProperty, FontWeights.Bold);
 
             Button randomizeBtn = RandomizeButton();
 
@@ -199,12 +201,12 @@ namespace LivraisonCoteDorGolay
             //g.ColumnDefinitions.Add(col4);
 
             //Adding children to grid
-            g.Children.Add(l);
+            g.Children.Add(tb);
             g.Children.Add(inputTourOption);
             g.Children.Add(randomizeBtn);
             //g.Children.Add(bringBackBtn);
 
-            Grid.SetColumn(l, 0);
+            Grid.SetColumn(tb, 0);
             Grid.SetColumn(inputTourOption, 1);
             Grid.SetColumn(randomizeBtn, 2);
             //Grid.SetColumn(bringBackBtn, 3);
@@ -277,9 +279,9 @@ namespace LivraisonCoteDorGolay
             btn.Cursor = Cursors.Hand;
             btn.SetValue(Label.FontWeightProperty, FontWeights.Bold);
             btn.Padding = new Thickness(5);
+            btn.Margin = new Thickness(5, 0, 5, 0);
             return btn;
         }
-
 
         private Button RandomizeButton()
         {
@@ -305,7 +307,7 @@ namespace LivraisonCoteDorGolay
             solutionBox.HorizontalContentAlignment = HorizontalAlignment.Center;
             solutionBox.VerticalContentAlignment = VerticalAlignment.Center;
             float margin = 5;
-            solutionBox.Margin = new Thickness(0, margin, 0, margin);
+            solutionBox.Margin = new Thickness(margin, margin, margin, margin);
             solutionBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE2E2E2"));
             this.Children.Add(solutionBox);
         }

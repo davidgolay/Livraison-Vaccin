@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LivraisonCoteDorGolay"
         mc:Ignorable="d"
-        Title="SolvingWindow" Height="1000" Width="1200" FontFamily="Microsoft JhengHei" Background="#FFCDCDCD">
+        Title="SolvingWindow" Height="800" Width="1000" FontFamily="Microsoft JhengHei" Background="#FFCDCDCD">
 
     <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>

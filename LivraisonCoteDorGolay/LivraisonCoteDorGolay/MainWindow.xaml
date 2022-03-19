@@ -13,9 +13,9 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Loaded city set preview" VerticalAlignment="Bottom" FontSize="14" FontWeight="Bold" />
-        <TextBox Grid.Row="1" x:Name="filePreview" Margin="0,0,0,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFE2E2E2"/>
-        <Button Grid.Row="2" Content="Import a city set" Click="OnAddFile" Background="#FF1F2930" Foreground="White" FontSize="14" BorderBrush="#FF33434F" Cursor="Hand"/>
+        <Label Grid.Row="0" Content="Prévisualisation de la liste importée" VerticalAlignment="Bottom" FontSize="14" FontWeight="Bold" />
+        <TextBox Grid.Row="1" x:Name="filePreview" Margin="0,0,0,10" Background="#FFE2E2E2"/>
+        <Button Grid.Row="2" Content="Importer une liste de villes" Click="OnAddFile" Background="#FF1F2930" Foreground="White" FontSize="14" BorderBrush="#FF33434F" Cursor="Hand"/>
 
     </Grid>
 </Window>

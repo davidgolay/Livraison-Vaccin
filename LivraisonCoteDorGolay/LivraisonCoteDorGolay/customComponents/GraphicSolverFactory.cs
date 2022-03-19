@@ -31,7 +31,7 @@ namespace LivraisonCoteDorGolay.customComponents
                 case "insertionProche" : 
                     gs = new GraphicSolverNearInsertion(parent);
                     gs.NameSolution = "Insertion Proche";
-                    gs.AdditiveDescription = "---";
+                    gs.AdditiveDescription = "";
                     break;
                 default: gs = new GraphicSolverNearInsertion(parent);
                     break;
