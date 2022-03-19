@@ -9,13 +9,16 @@
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition />
+            <RowDefinition />
             <RowDefinition Height="8*"/>
+            <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Prévisualisation de la liste importée" VerticalAlignment="Bottom" FontSize="14" FontWeight="Bold" />
-        <TextBox Grid.Row="1" x:Name="filePreview" Margin="0,0,0,10" Background="#FFE2E2E2"/>
-        <Button Grid.Row="2" Content="Importer une liste de villes" Click="OnAddFile" Background="#FF1F2930" Foreground="White" FontSize="14" BorderBrush="#FF33434F" Cursor="Hand"/>
-
+        <TextBox Grid.Row="2" x:Name="filePreview" Margin="0,0,0,10" Background="#FFE2E2E2"/>
+        <Button Grid.Row="1" Content="Importer une liste de villes" Click="OnAddFile" Background="#FF1F2930" Foreground="White" FontSize="14" BorderBrush="#FF33434F" Cursor="Hand"/>
+        <Button x:Name="btnGlouton" Grid.Row="3" Content="Algo Gloutons" Background="#FF1F2930" Foreground="White" FontSize="14" BorderBrush="#FF33434F" Cursor="Hand" Margin="0,2" Click="GoGlouton" IsEnabled="False"/>
+        <Button x:Name="btnLocalSearch" Grid.Row="4" Content="Algo Recherche Locale" Background="#FF1F2930" Foreground="White" FontSize="14" BorderBrush="#FF33434F" Cursor="Hand" Margin="0,2" Click="GoLocalSearch" IsEnabled="False"/>
     </Grid>
 </Window>

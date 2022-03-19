@@ -9,7 +9,7 @@ namespace LivraisonCoteDorGolay.customComponents
 {
     public class GraphicSolverLRFF : GraphicSolver
     {
-        public GraphicSolverLRFF(SolvingWindow sw) : base(sw)
+        public GraphicSolverLRFF(MainWindow parentController) : base(parentController)
         {
         }
 

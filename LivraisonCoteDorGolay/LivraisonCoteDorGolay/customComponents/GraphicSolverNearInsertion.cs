@@ -10,7 +10,7 @@ namespace LivraisonCoteDorGolay.customComponents
 {
     public class GraphicSolverNearInsertion : GraphicSolver
     {
-        public GraphicSolverNearInsertion(SolvingWindow sw) : base(sw)
+        public GraphicSolverNearInsertion(MainWindow parentController) : base(parentController)
         {
         }
 

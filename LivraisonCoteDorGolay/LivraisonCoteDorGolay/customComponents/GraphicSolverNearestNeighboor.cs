@@ -10,7 +10,7 @@ namespace LivraisonCoteDorGolay.customComponents
 {
     public class GraphicSolverNearestNeighboor : GraphicSolver
     {
-        public GraphicSolverNearestNeighboor(SolvingWindow sw) : base(sw)
+        public GraphicSolverNearestNeighboor(MainWindow parentController) : base(parentController)
         {
         }
 

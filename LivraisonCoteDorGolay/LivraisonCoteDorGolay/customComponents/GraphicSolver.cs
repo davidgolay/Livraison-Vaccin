@@ -17,7 +17,7 @@ namespace LivraisonCoteDorGolay
         private List<City> untouchedCities;
         private Tour bestTourComputed;
         private Tour lastTourComputed;
-        private SolvingWindow parent;
+        private MainWindow parent;
 
         private string xName;
         private string solutionName;
@@ -51,11 +51,11 @@ namespace LivraisonCoteDorGolay
 
         #endregion
 
-        public GraphicSolver(SolvingWindow sw)
+        public GraphicSolver(MainWindow parentController)
         {
-            this.citiesToSolve = new List<City>(sw.Cities);
-            this.untouchedCities = new List<City>(sw.Cities);
-            this.parent = sw;
+            this.citiesToSolve = new List<City>(parentController.Cities);
+            this.untouchedCities = new List<City>(parentController.Cities);
+            this.parent = parentController;
             InitComboBox();
         }
 
@@ -98,7 +98,7 @@ namespace LivraisonCoteDorGolay
             RowDefinition rowDef3 = new RowDefinition();
             RowDefinition rowDef4 = new RowDefinition();
             RowDefinition rowDef5 = new RowDefinition();
-            rowDef4.Height = new GridLength(3.0, GridUnitType.Star);
+            rowDef4.Height = new GridLength(4.0, GridUnitType.Star);
             this.RowDefinitions.Add(rowDef1);
             this.RowDefinitions.Add(rowDef2);
             this.RowDefinitions.Add(rowDef3);
@@ -175,7 +175,7 @@ namespace LivraisonCoteDorGolay
         {
             //Cost Label
             TextBlock tb = new TextBlock();
-            tb.Text = "A partir de " + parent.FileNameUsed;
+            tb.Text = "A partir de " + parent.FileName;
             tb.VerticalAlignment = VerticalAlignment.Center;
             tb.HorizontalAlignment = HorizontalAlignment.Right;
             tb.FontSize = 12;

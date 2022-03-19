@@ -11,29 +11,34 @@ namespace LivraisonCoteDorGolay.customComponents
     public static class GraphicSolverFactory
     {
 
-        public static GraphicSolver Create(string name,  SolvingWindow parent)
+        public static GraphicSolver Create(string name, MainWindow parentController)
         {
             GraphicSolver gs = null;
             switch (name)
             {
                 case "plusProcheVoisin":
-                    gs = new GraphicSolverNearestNeighboor(parent);
+                    gs = new GraphicSolverNearestNeighboor(parentController);
                     gs.NameSolution = "PPV";
                     gs.AdditiveDescription = "";
                     break;
 
                 case "plusProcheVoisinAméliore":
-                    gs = new GraphicSolverNearestNeighborAdvanced(parent);
+                    gs = new GraphicSolverNearestNeighborAdvanced(parentController);
                     gs.NameSolution = "PPV Amélioré";
                     gs.AdditiveDescription = "";
                     break;
 
                 case "insertionProche" : 
-                    gs = new GraphicSolverNearInsertion(parent);
+                    gs = new GraphicSolverNearInsertion(parentController);
                     gs.NameSolution = "Insertion Proche";
                     gs.AdditiveDescription = "";
                     break;
-                default: gs = new GraphicSolverNearInsertion(parent);
+                case "premierDabord":
+                    gs = new GraphicSolverNearInsertion(parentController);
+                    gs.NameSolution = "premier d'abord";
+                    gs.AdditiveDescription = "";
+                    break;
+                default: gs = new GraphicSolverNearInsertion(parentController);
                     break;
             }
 
