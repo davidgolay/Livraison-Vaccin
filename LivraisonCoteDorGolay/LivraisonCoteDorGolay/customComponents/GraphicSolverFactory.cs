@@ -18,13 +18,13 @@ namespace LivraisonCoteDorGolay.customComponents
                 case "plusProcheVoisin":
                     gs = new GraphicSolverNearestNeighboor(cities);
                     gs.NameSolution = "Plus proche voisin";
-                    gs.AdditiveDescription = "---";
+                    gs.AdditiveDescription = "";
                     break;
 
                 case "plusProcheVoisinAméliore":
                     gs = new GraphicSolverNearestNeighborAdvanced(cities);
                     gs.NameSolution = "Plus proche voisin amélioré";
-                    gs.AdditiveDescription = "---";
+                    gs.AdditiveDescription = "";
                     break;
 
                 case "insertionProche" : 

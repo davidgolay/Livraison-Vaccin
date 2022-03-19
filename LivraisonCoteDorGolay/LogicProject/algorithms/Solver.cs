@@ -13,12 +13,10 @@ namespace LogicProject.algorithms
 
         private Dictionary<City, bool> visitedCity = new Dictionary<City, bool>();
         private List<City> cities;
-        private string name;
 
         public Dictionary<City, bool> VisitedCity { get => this.visitedCity; }
 
         public List<City> Cities { get => this.cities;  }
-        public string Name { get => name; set => name = value; }
 
         public Solver(List<City> cities)
         {

@@ -4,20 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LivraisonCoteDorGolay"
-        xmlns:custom="clr-namespace:LivraisonCoteDorGolay.customControls"
         mc:Ignorable="d"
-        Title="SolvingWindow" Height="900" Width="1200" FontFamily="Microsoft JhengHei" Background="#FFCDCDCD">
+        Title="SolvingWindow" Height="1000" Width="1200" FontFamily="Microsoft JhengHei" Background="#FFCDCDCD">
 
     <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid x:Name="gloutonGrid" Grid.Row="0" Margin="10,10,10,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

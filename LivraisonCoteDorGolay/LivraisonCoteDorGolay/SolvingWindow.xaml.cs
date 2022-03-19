@@ -1,5 +1,4 @@
 ﻿using LivraisonCoteDorGolay.customComponents;
-using LivraisonCoteDorGolay.customControls;
 using LogicProject;
 using LogicProject.algorithms;
 using LogicProject.algorithms.localResearchs;
@@ -26,14 +25,15 @@ namespace LivraisonCoteDorGolay
     public partial class SolvingWindow : Window
     {
         private List<City> cities;
-        private List<Solver> solversColumn1;
-        private List<Solver> solversColumn2;
-        private List<Solver> solversColumn3;
+        private List<Solver> gloutonSolvers;
+        private List<Solver> localResearchSolvers;
 
         public SolvingWindow(List<City> cities)
         {
             InitializeComponent();
             this.cities = new List<City>(cities);
+            this.gloutonSolvers = new List<Solver>();
+            this.localResearchSolvers = new List<Solver>();
             GloutonSolvers();
         }
 
@@ -53,6 +53,7 @@ namespace LivraisonCoteDorGolay
             insertionProche.SolverGrid();
             gloutonGrid.Children.Add(insertionProche);
             Grid.SetColumn(insertionProche, 2);
+
         }
     }
 }
