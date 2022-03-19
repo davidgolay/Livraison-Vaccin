@@ -10,18 +10,16 @@ namespace LivraisonCoteDorGolay.customComponents
 {
     public class GraphicSolverNearestNeighborAdvanced : GraphicSolver
     {
-        public GraphicSolverNearestNeighborAdvanced(List<City> cities) : base(cities)
+        public GraphicSolverNearestNeighborAdvanced(SolvingWindow sw) : base(sw)
         {
         }
 
-        protected override void OnSolveAction()
+        protected override Tour OnSolveAction()
         {
             Solver solver = new SolverNearestNeighborAdvanced(CitiesToSolve);
             Tour solvedTour = solver.Solve(CitiesToSolve.ElementAt(0));
-            SolutionBox.Text = solvedTour.DisplayTour();
-            CostBox.Text = Math.Round(solvedTour.Cost, 4).ToString();
-
             AlignSolutionBox();
+            return solvedTour;
         }
     }
 }

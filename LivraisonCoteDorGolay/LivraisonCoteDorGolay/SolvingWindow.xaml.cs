@@ -25,35 +25,47 @@ namespace LivraisonCoteDorGolay
     public partial class SolvingWindow : Window
     {
         private List<City> cities;
+        private string fileNameUsed;
         private List<Solver> gloutonSolvers;
         private List<Solver> localResearchSolvers;
+        public List<City> Cities { get => cities; set => cities = value; }
+        public string FileNameUsed { get => fileNameUsed; set => fileNameUsed = value; }
 
-        public SolvingWindow(List<City> cities)
+        public SolvingWindow(List<City> cities, string fileNameUsed)
         {
             InitializeComponent();
-            this.cities = new List<City>(cities);
+            this.Cities = new List<City>(cities);
+            this.FileNameUsed = fileNameUsed;
             this.gloutonSolvers = new List<Solver>();
             this.localResearchSolvers = new List<Solver>();
             GloutonSolvers();
         }
 
+
         private void GloutonSolvers()
         {
-            GraphicSolver procheVoisin = GraphicSolverFactory.Create("plusProcheVoisin", new List<City>(cities));
+            GraphicSolver procheVoisin = GraphicSolverFactory.Create("plusProcheVoisin", this);
             procheVoisin.SolverGrid();
             gloutonGrid.Children.Add(procheVoisin);
             Grid.SetColumn(procheVoisin, 0);
 
-            GraphicSolver procheVoisinAmeliore = GraphicSolverFactory.Create("plusProcheVoisinAméliore", new List<City>(cities));
+            GraphicSolver procheVoisinAmeliore = GraphicSolverFactory.Create("plusProcheVoisinAméliore", this);
             procheVoisinAmeliore.SolverGrid();
             gloutonGrid.Children.Add(procheVoisinAmeliore);
             Grid.SetColumn(procheVoisinAmeliore, 1);
 
-            GraphicSolver insertionProche = GraphicSolverFactory.Create("insertionProche", new List<City>(cities));
+            GraphicSolver insertionProche = GraphicSolverFactory.Create("insertionProche", this);
             insertionProche.SolverGrid();
             gloutonGrid.Children.Add(insertionProche);
             Grid.SetColumn(insertionProche, 2);
+        }
 
+        private void LocalSearchSolvers()
+        {
+            GraphicSolver localSearchFF = GraphicSolverFactory.Create("rechercheLocalPremierDabord", this);
+            localSearchFF.SolverGrid();
+            localSearchGrid.Children.Add(localSearchFF);
+            Grid.SetColumn(localSearchFF, 0);
         }
     }
 }

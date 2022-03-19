@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
-        <Grid x:Name="secondGrid" Grid.Row="1" Margin="10,10,10,10">
+        <Grid x:Name="localSearchGrid" Grid.Row="1" Margin="10,10,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

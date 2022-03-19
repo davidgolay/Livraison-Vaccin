@@ -42,18 +42,21 @@ namespace LivraisonCoteDorGolay
                 CityExtractorTxt extractor = new CityExtractorTxt();
                 this._cities = extractor.ExtractCitiesFromLines(lines);
                 filePreview.Text = File.ReadAllText(openFileDialog.FileName);
-
                 GoSolvingWindow(openFileDialog.FileName);
             }
         }
 
-        private void GoSolvingWindow(string name)
+        private void GoSolvingWindow(string fullPath)
         {
             if (_cities != null) {
                 try
                 {
-                    SolvingWindow second = new SolvingWindow(_cities);
-                    second.Title = " City Set " + name;
+                    fullPath = System.IO.Path.GetFullPath(fullPath).TrimEnd(System.IO.Path.DirectorySeparatorChar);
+                    string fileName = System.IO.Path.GetFileNameWithoutExtension(fullPath);
+
+
+                    SolvingWindow second = new SolvingWindow(_cities, fileName);
+                    second.Title = " City Set " + fullPath;
                     second.Show();
                 }
                 catch (Exception x)
