@@ -38,6 +38,21 @@ namespace LivraisonCoteDorGolay.customComponents
                     gs.NameSolution = "premier d'abord";
                     gs.AdditiveDescription = "";
                     break;
+                case "meilleurSuccesseur":
+                    gs = new GraphicSolverBestSuccessor(parentController);
+                    gs.NameSolution = "meilleur successeur";
+                    gs.AdditiveDescription = "";
+                    break;
+                case "quelconquePremierDabord":
+                    gs = new GraphicSolverLRPremierQuelconque(parentController);
+                    gs.NameSolution = "échange de sommets quelconque premier d'abord";
+                    gs.AdditiveDescription = "";
+                    break;
+                case "quelconqueMeilleurDabord":
+                    gs = new GraphicSolverLRMeilleurQuelconque(parentController);
+                    gs.NameSolution = "échange de sommets quelconque premier d'abord";
+                    gs.AdditiveDescription = "";
+                    break;
                 default: gs = new GraphicSolverNearInsertion(parentController);
                     gs.NameSolution = "Insertion Proche";
                     gs.AdditiveDescription = "";

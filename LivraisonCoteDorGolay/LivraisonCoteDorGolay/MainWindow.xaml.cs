@@ -119,9 +119,15 @@ namespace LivraisonCoteDorGolay
 
         private List<GraphicSolver> LocalSearchSolvers()
         {
-            GraphicSolver localSearchFF = GraphicSolverFactory.Create("premierDabord", this);
+            GraphicSolver PremierDabord = GraphicSolverFactory.Create("premierDabord", this);
+            GraphicSolver MeilleurSuccesseur = GraphicSolverFactory.Create("meilleurSuccesseur", this);
+            GraphicSolver EchangeQlcPremierDabord = GraphicSolverFactory.Create("quelconquePremierDabord", this);
+            GraphicSolver EchangeQlcMeilleurDabord = GraphicSolverFactory.Create("quelconqueMeilleurDabord", this);
             List<GraphicSolver> list = new List<GraphicSolver>();
-            list.Add(localSearchFF);
+            list.Add(PremierDabord);
+            list.Add(MeilleurSuccesseur);
+            list.Add(EchangeQlcPremierDabord);
+            list.Add(EchangeQlcMeilleurDabord);
             return list;
         }
     }

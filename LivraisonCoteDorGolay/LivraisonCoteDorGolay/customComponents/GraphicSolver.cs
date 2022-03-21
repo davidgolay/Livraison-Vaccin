@@ -1,4 +1,5 @@
 ﻿using LogicProject.algorithms;
+using LogicProject.algorithms.localResearchs;
 using LogicProject.networks;
 using LogicProject.Utilities;
 using System;
@@ -32,7 +33,7 @@ namespace LivraisonCoteDorGolay
 
         private FontFamily fontFamily = new FontFamily("Microsoft JhengHei");
         private ComboBox inputTourOption;
-        private string[] presolvingItems = new string[] { "basique", "après PPV", "après PPV amélioré", "après Insertion Proche" };
+        private string[] presolvingItems = new string[] { "basique", "après PPV", "après PPV amélioré", "après Insertion Proche", "après échange succ. 1er d'abord", "après échange succ. meilleur d'abord" };
 
 
         #region propreties
@@ -266,6 +267,22 @@ namespace LivraisonCoteDorGolay
                 citiesToSolve = untouchedCities;
                 Solver snna = new SolverNearInsertion(CitiesToSolve);
                 citiesToSolve = snna.Solve(citiesToSolve.ElementAt(0)).Cities;
+                UpdateInput();
+                updateSolvingButtonContent(itemSelected);
+            }
+            else if (itemSelected == presolvingItems[4])
+            {
+                citiesToSolve = untouchedCities;
+                Solver ff = new SolverLRFirstlyFirst(CitiesToSolve, new Tour(citiesToSolve));
+                citiesToSolve = ff.Solve(citiesToSolve.ElementAt(0)).Cities;
+                UpdateInput();
+                updateSolvingButtonContent(itemSelected);
+            }
+            else if (itemSelected == presolvingItems[5])
+            {
+                citiesToSolve = untouchedCities;
+                Solver md = new SolverLRBestSuccessor(CitiesToSolve, new Tour(citiesToSolve));
+                citiesToSolve = md.Solve(citiesToSolve.ElementAt(0)).Cities;
                 UpdateInput();
                 updateSolvingButtonContent(itemSelected);
             }

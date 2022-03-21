@@ -1,4 +1,5 @@
 ﻿using LogicProject.algorithms;
+using LogicProject.algorithms.localResearchs;
 using LogicProject.networks;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace LivraisonCoteDorGolay.customComponents
 {
-    public class GraphicSolverNearInsertion : GraphicSolver
+    class GraphicSolverLRPremierQuelconque : GraphicSolver
     {
-        public GraphicSolverNearInsertion(MainWindow parentController) : base(parentController)
+        public GraphicSolverLRPremierQuelconque(MainWindow parentController) : base(parentController)
         {
         }
 
         protected override Tour OnSolveAction()
         {
-            Solver solver = new SolverNearInsertion(base.CitiesToSolve);
-            Tour solvedTour = solver.Solve(base.CitiesToSolve.ElementAt(0));
+            Solver solver = new SolverLRPremierQuelconque(CitiesToSolve, new Tour(base.CitiesToSolve));
+            Tour solvedTour = solver.Solve(CitiesToSolve.ElementAt(0));
             AlignSolutionBox();
             return solvedTour;
         }

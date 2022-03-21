@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LogicProject.algorithms.localResearchs
 {
-    public class SolverLRFirstlyFirst : SolverLocalResearch
+    public class SolverLRPremierQuelconque : SolverLocalResearch
     {
-        public SolverLRFirstlyFirst(List<City> cities, Tour inputTour) : base(cities, inputTour)
+        public SolverLRPremierQuelconque(List<City> cities, Tour inputTour) : base(cities, inputTour)
         {
         }
 
@@ -21,13 +21,16 @@ namespace LogicProject.algorithms.localResearchs
 
         protected override Tour ExploreNeighborhood(Tour tour)
         {
-            Tour currentTour = (Tour) tour.Clone();
+            Tour currentTour = (Tour)tour.Clone();
             Tour neighborTour = (Tour)tour.Clone();
-            for (int i=0; i<currentTour.Cities.Count-1; i++)
+            for (int i = 0; i < currentTour.Cities.Count - 1; i++)
             {
-                City c1 = currentTour.Cities.ElementAt(i);
-                City c2 = currentTour.Cities.ElementAt(i+1);
-                SwapIfBetter(ref neighborTour, c1, c2 );
+                for(int j = 0; j< currentTour.Cities.Count; j++)
+                {
+                    City c1 = currentTour.Cities.ElementAt(i);
+                    City c2 = currentTour.Cities.ElementAt(j);
+                    SwapIfBetter(ref neighborTour, c1, c2);
+                }
             }
             return neighborTour;
         }

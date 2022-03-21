@@ -44,7 +44,7 @@ namespace LogicProject.algorithms
 
         protected abstract Tour ExploreNeighborhood(Tour tour);
 
-        protected void SwitchIfBetter(ref Tour tour, City c1, City c2)
+        protected void SwapIfBetter(ref Tour tour, City c1, City c2)
         {
             Tour outputTour = (Tour)tour.Clone();
 

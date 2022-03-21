@@ -55,8 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="customComponents\GraphicSolverBestSuccessor.cs" />
     <Compile Include="customComponents\GraphicSolverFactory.cs" />
     <Compile Include="customComponents\GraphicSolverLRFF.cs" />
+    <Compile Include="customComponents\GraphicSolverLRMeilleurQuelconque.cs" />
+    <Compile Include="customComponents\GraphicSolverLRPremierQuelconque.cs" />
     <Compile Include="customComponents\GraphicSolverNearestNeighborAdvanced.cs" />
     <Compile Include="customComponents\GraphicSolverNearestNeighboor.cs" />
     <Compile Include="customComponents\GraphicSolverNearInsertion.cs" />
