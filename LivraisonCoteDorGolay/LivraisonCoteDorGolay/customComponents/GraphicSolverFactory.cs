@@ -34,11 +34,13 @@ namespace LivraisonCoteDorGolay.customComponents
                     gs.AdditiveDescription = "";
                     break;
                 case "premierDabord":
-                    gs = new GraphicSolverNearInsertion(parentController);
+                    gs = new GraphicSolverLRFF(parentController);
                     gs.NameSolution = "premier d'abord";
                     gs.AdditiveDescription = "";
                     break;
                 default: gs = new GraphicSolverNearInsertion(parentController);
+                    gs.NameSolution = "Insertion Proche";
+                    gs.AdditiveDescription = "";
                     break;
             }
 

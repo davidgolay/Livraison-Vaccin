@@ -26,7 +26,8 @@ namespace LivraisonCoteDorGolay
         private Label lName;
         private Label lAdditiveDescription;
         private Button solveButton;
-        private TextBox solutionBox;
+        private TextBox outputBox;
+        private TextBox inputBox;
         private TextBox costBox;
 
         private FontFamily fontFamily = new FontFamily("Microsoft JhengHei");
@@ -44,7 +45,8 @@ namespace LivraisonCoteDorGolay
         public Label LAdditiveDescription { get => lAdditiveDescription; set => lAdditiveDescription = value; }
         public Button BtnSolveButton { get => solveButton; set => solveButton = value; }
         public List<City> CitiesToSolve { get => citiesToSolve; set => citiesToSolve = value; }
-        public TextBox SolutionBox { get => solutionBox; set => solutionBox = value; }
+        public TextBox OutputBox { get => outputBox; set => outputBox = value; }
+        public TextBox InputBox { get => inputBox; set => inputBox = value; }
         public TextBox CostBox { get => costBox; set => costBox = value; }
         public Tour BestTourComputed { get => bestTourComputed; set => bestTourComputed = value; }
         public Tour LastTourComputed1 { get => lastTourComputed; set => lastTourComputed = value; }
@@ -56,7 +58,7 @@ namespace LivraisonCoteDorGolay
             this.citiesToSolve = new List<City>(parentController.Cities);
             this.untouchedCities = new List<City>(parentController.Cities);
             this.parent = parentController;
-            InitComboBox();
+            InitComboBox(); 
         }
 
         protected abstract Tour OnSolveAction();
@@ -64,25 +66,30 @@ namespace LivraisonCoteDorGolay
         private void Button_Click(object sender, EventArgs e)
         {
             lastTourComputed = OnSolveAction();
-            UpdateTour();
+            UpdateSolution();
         }
 
         private void Randomize_Click(object sender, EventArgs e)
         {
             CityMapper.ShuffleCities(this.CitiesToSolve);
-            lastTourComputed = OnSolveAction();
-            UpdateTour();
+            UpdateInput();
         }
 
         private void BringBackBestTour_Click(object sender, EventArgs e)
         {
             citiesToSolve = bestTourComputed.Cities;
-            UpdateTour();
+            UpdateSolution();
         }
 
-        private void UpdateTour()
+        private void UpdateInput()
         {
-            SolutionBox.Text = lastTourComputed.DisplayTour();
+            Tour t = new Tour(CitiesToSolve);
+            inputBox.Text = t.DisplayTour();
+        }
+
+        private void UpdateSolution()
+        {
+            outputBox.Text = lastTourComputed.DisplayTour();
             CostBox.Text = Math.Round(lastTourComputed.Cost, 4).ToString();
         }
 
@@ -97,42 +104,43 @@ namespace LivraisonCoteDorGolay
             RowDefinition rowDef2 = new RowDefinition();
             RowDefinition rowDef3 = new RowDefinition();
             RowDefinition rowDef4 = new RowDefinition();
-            RowDefinition rowDef5 = new RowDefinition();
-            rowDef4.Height = new GridLength(4.0, GridUnitType.Star);
+            rowDef3.Height = new GridLength(8.0, GridUnitType.Star);
             this.RowDefinitions.Add(rowDef1);
             this.RowDefinitions.Add(rowDef2);
             this.RowDefinitions.Add(rowDef3);
             this.RowDefinitions.Add(rowDef4);
-            this.RowDefinitions.Add(rowDef5);
 
             //Content generation
             Grid gTitle = GenerateTitleBox();
-            GenerateSolutionBox();
 
             Grid gControls = GenerateControlsGrid();
             this.Children.Add(gControls);
 
             Grid costGrid = GenerateCostGrid();
             this.Children.Add(costGrid);
-            GenerateSolverButton();
+
+            Grid solutionGrid = GenerateSolutionBox();
+            this.Children.Add(solutionGrid);
 
             Grid.SetRow(gTitle, 0);
             Grid.SetRow(gControls, 1);
-            Grid.SetRow(solveButton, 2);
-            Grid.SetRow(solutionBox, 3);
-            Grid.SetRow(costGrid, 4);
+            Grid.SetRow(solutionGrid, 2);
+            Grid.SetRow(costGrid, 3);
 
             //Margin and styles
             float margin = 5;
             this.Margin = new Thickness(margin, margin, margin, margin);
             this.ShowGridLines = false;
             this.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFADADAD"));
+
+            UpdateInput();
         }
 
         private Label GenerateLabel(string value)
         {
             Label l = new Label();
             l.FontFamily = fontFamily;
+            l.SetValue(Label.FontWeightProperty, FontWeights.Bold);
             l.Content = value;
             return l;
         }
@@ -140,6 +148,7 @@ namespace LivraisonCoteDorGolay
         private Grid GenerateTitleBox()
         {
             lName = GenerateLabel("Methode de résolution " + NameSolution);
+            lName.FontSize = 18;
             lAdditiveDescription = GenerateLabel(AdditiveDescription);
 
             //Seeting weight and style
@@ -182,35 +191,23 @@ namespace LivraisonCoteDorGolay
             tb.Padding = new Thickness(0, 0, 5, 0);
             tb.TextWrapping = TextWrapping.Wrap;
             tb.SetValue(Label.FontWeightProperty, FontWeights.Bold);
-
-            Button randomizeBtn = RandomizeButton();
-
-            Button bringBackBtn = BringBackBestButton();
-
+            tb.Margin = new Thickness(0, 0, 5, 0);
 
             // Define the Rows
             Grid g = new Grid();
             ColumnDefinition col1 = new ColumnDefinition();
             ColumnDefinition col2 = new ColumnDefinition();
-            ColumnDefinition col3 = new ColumnDefinition();
-            ColumnDefinition col4 = new ColumnDefinition();
-            //col2.Width = new GridLength(2.0, GridUnitType.Star);
+            col2.Width = new GridLength(2.0, GridUnitType.Star);
             g.ColumnDefinitions.Add(col1);
             g.ColumnDefinitions.Add(col2);
-            g.ColumnDefinitions.Add(col3);
             //g.ColumnDefinitions.Add(col4);
 
             //Adding children to grid
             g.Children.Add(tb);
             g.Children.Add(inputTourOption);
-            g.Children.Add(randomizeBtn);
-            //g.Children.Add(bringBackBtn);
 
             Grid.SetColumn(tb, 0);
             Grid.SetColumn(inputTourOption, 1);
-            Grid.SetColumn(randomizeBtn, 2);
-            //Grid.SetColumn(bringBackBtn, 3);
-
 
             //Grid Styling
             float margin = 5;
@@ -245,6 +242,7 @@ namespace LivraisonCoteDorGolay
             if(itemSelected == presolvingItems[0])
             {
                 citiesToSolve = untouchedCities;
+                UpdateInput();
                 updateSolvingButtonContent(itemSelected);
             }
             else if (itemSelected == presolvingItems[1])
@@ -252,6 +250,7 @@ namespace LivraisonCoteDorGolay
                 citiesToSolve = untouchedCities;
                 Solver snn = new SolverNearestNeighbor(CitiesToSolve);
                 citiesToSolve = snn.Solve(citiesToSolve.ElementAt(0)).Cities;
+                UpdateInput();
                 updateSolvingButtonContent(itemSelected);
             }
             else if (itemSelected == presolvingItems[2])
@@ -259,6 +258,7 @@ namespace LivraisonCoteDorGolay
                 citiesToSolve = untouchedCities;
                 Solver snna = new SolverNearestNeighborAdvanced(CitiesToSolve);
                 citiesToSolve = snna.Solve(citiesToSolve.ElementAt(0)).Cities;
+                UpdateInput();
                 updateSolvingButtonContent(itemSelected);
             }
             else if (itemSelected == presolvingItems[3])
@@ -266,6 +266,7 @@ namespace LivraisonCoteDorGolay
                 citiesToSolve = untouchedCities;
                 Solver snna = new SolverNearInsertion(CitiesToSolve);
                 citiesToSolve = snna.Solve(citiesToSolve.ElementAt(0)).Cities;
+                UpdateInput();
                 updateSolvingButtonContent(itemSelected);
             }
         }
@@ -299,17 +300,72 @@ namespace LivraisonCoteDorGolay
             return b;
         }
 
-        private void GenerateSolutionBox()
+        private Grid GenerateSolutionBox()
         {
-            this.solutionBox = new TextBox();
-            solutionBox.FontFamily = fontFamily;
-            solutionBox.Text = "Not Computed";
-            solutionBox.HorizontalContentAlignment = HorizontalAlignment.Center;
-            solutionBox.VerticalContentAlignment = VerticalAlignment.Center;
+            Label lInput = GenerateLabel("Tournée d'input :");
+            Label lOutput = GenerateLabel("Tournée calculée :");
+            lInput.VerticalContentAlignment = VerticalAlignment.Bottom;
+            lOutput.VerticalContentAlignment = VerticalAlignment.Bottom;
+            Button randomizeBtn = RandomizeButton();
+            this.solveButton = SolverButton();
+            updateSolvingButtonContent(inputTourOption.SelectedItem.ToString());
+
+            this.inputBox = TextBoxBasis();
+            this.inputBox.HorizontalContentAlignment = HorizontalAlignment.Left;
+            this.inputBox.VerticalContentAlignment = VerticalAlignment.Top;
+            this.outputBox = TextBoxBasis();
+            Grid g = new Grid();
+
+            ColumnDefinition col1 = new ColumnDefinition();
+            ColumnDefinition col2 = new ColumnDefinition();
+            col2.Width = new GridLength(2.0, GridUnitType.Star);
+            g.ColumnDefinitions.Add(col1);
+            g.ColumnDefinitions.Add(col2);
+
+            RowDefinition row1 = new RowDefinition();
+            RowDefinition row2 = new RowDefinition();
+            RowDefinition row3 = new RowDefinition();
+            row3.Height = new GridLength(5.0, GridUnitType.Star);
+            g.RowDefinitions.Add(row1);
+            g.RowDefinitions.Add(row2);
+            g.RowDefinitions.Add(row3);
+
+            g.Children.Add(lInput);
+            g.Children.Add(lOutput);
+            g.Children.Add(inputBox);
+            g.Children.Add(outputBox);
+            g.Children.Add(randomizeBtn);
+            g.Children.Add(solveButton);
+
+            Grid.SetColumn(lInput, 0);
+            Grid.SetRow(lInput, 0);
+            Grid.SetColumn(lOutput, 1);
+            Grid.SetRow(lOutput, 0);
+
+            Grid.SetColumn(randomizeBtn, 0);
+            Grid.SetRow(randomizeBtn, 1);
+            Grid.SetColumn(solveButton, 1);
+            Grid.SetRow(solveButton, 1);
+
+            Grid.SetColumn(this.inputBox, 0);
+            Grid.SetRow(this.inputBox, 2);
+            Grid.SetColumn(this.outputBox, 1);
+            Grid.SetRow(this.outputBox, 2);
+
+            return g;
+        }
+
+        private TextBox TextBoxBasis()
+        {
+            TextBox tb = new TextBox();
+            tb.FontFamily = fontFamily;
+            tb.Text = "Not Computed";
+            tb.HorizontalContentAlignment = HorizontalAlignment.Center;
+            tb.VerticalContentAlignment = VerticalAlignment.Center;
             float margin = 5;
-            solutionBox.Margin = new Thickness(margin, margin, margin, margin);
-            solutionBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE2E2E2"));
-            this.Children.Add(solutionBox);
+            tb.Margin = new Thickness(margin, margin, margin, margin);
+            tb.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE2E2E2"));
+            return tb;
         }
 
         private Grid GenerateCostGrid()
@@ -353,19 +409,18 @@ namespace LivraisonCoteDorGolay
             return g;
         }
 
-        private void GenerateSolverButton()
+        private Button SolverButton()
         {
-            this.solveButton = ButtonBasis();
-            this.solveButton.Click += new RoutedEventHandler(Button_Click);
-            updateSolvingButtonContent(inputTourOption.SelectedItem.ToString());
-
-            this.Children.Add(this.solveButton);
+            Button b = ButtonBasis();
+            b.FontSize = 12;
+            b.Click += new RoutedEventHandler(Button_Click);
+            return b;
         }
 
         protected void AlignSolutionBox()
         {
-            solutionBox.HorizontalContentAlignment = HorizontalAlignment.Left;
-            solutionBox.VerticalContentAlignment = VerticalAlignment.Top;
+            outputBox.HorizontalContentAlignment = HorizontalAlignment.Left;
+            outputBox.VerticalContentAlignment = VerticalAlignment.Top;
         }
 
         protected void UpdateBestTourComputed()

@@ -18,7 +18,7 @@ namespace LivraisonCoteDorGolay.customComponents
         {
             Solver solver = new SolverNearInsertion(base.CitiesToSolve);
             Tour solvedTour = solver.Solve(base.CitiesToSolve.ElementAt(0));
-            AlignSolutionBox();
+
             return solvedTour;
         }
     }

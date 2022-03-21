@@ -1,4 +1,6 @@
-﻿using LogicProject.networks;
+﻿using LogicProject.algorithms;
+using LogicProject.algorithms.localResearchs;
+using LogicProject.networks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,10 @@ namespace LivraisonCoteDorGolay.customComponents
 
         protected override Tour OnSolveAction()
         {
-            throw new NotImplementedException();
+            Solver solver = new SolverLRFirstlyFirst(base.CitiesToSolve, new Tour(base.CitiesToSolve));
+            Tour solvedTour = solver.Solve(base.CitiesToSolve.ElementAt(0));
+            AlignSolutionBox();
+            return solvedTour;
         }
     }
 }
